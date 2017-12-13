@@ -1,8 +1,10 @@
 import React from 'react';
+import Board from './Board';
+
 
 const App = () => (
   <div>
-    <p>From within App</p>
+    <Board />
   </div>
 );
 
