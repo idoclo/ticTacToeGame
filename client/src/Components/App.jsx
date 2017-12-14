@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Header } from 'semantic-ui-react';
+import { Header, Segment } from 'semantic-ui-react';
 import GameInfo from './GameInfo';
 import Board from './Board';
 
@@ -31,8 +31,13 @@ class App extends Component {
             Challenge your mates to a classic game of noughts and crosses!
           </Header.Subheader>
         </Header>
-        
-        <GameInfo player1={player1} player2={player2} activePlayer={activePlayer} />
+        <Segment id="info-and-scoreboard">
+          <GameInfo
+            player1={player1}
+            player2={player2}
+            activePlayer={activePlayer}
+          />
+        </Segment>
         <Board />
       </div>
     );
