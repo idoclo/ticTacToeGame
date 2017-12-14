@@ -8,3 +8,9 @@ logs
 # Compiled directory and file
 build/
 bundle.js
+*.hot-update.js
+*.hot-update.json
+client/dist/hot/hot-update.js
+client/dist/hot/hot-update.json
+client/dist/js/hot/hot-update.js
+client/dist/js/hot/hot-update.json
