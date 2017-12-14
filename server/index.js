@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(`${__dirname}/../client/dist`));
 
-app.use('/game', GameController)
+app.use('/game', GameController);
 
 app.use('*', (req, res) => {
   res.status(404).send();

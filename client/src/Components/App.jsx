@@ -38,7 +38,7 @@ class App extends Component {
             activePlayer={activePlayer}
           />
         </Segment>
-        <Board />
+        <Board activePlayer={activePlayer}/>
       </div>
     );
   }

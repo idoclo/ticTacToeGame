@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Segment, Button } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 import Square from './Square';
 
 
@@ -23,31 +24,32 @@ class Board extends Component {
     const filledSquareRegEx = /X|O/;
     const buttonText = filledSquareRegEx.test(squares) ? 'Reset' : 'Start';
     const buttonColour = filledSquareRegEx.test(squares) ? 'blue' : 'green';
+    const { activePlayer } = this.props;
     return (
       <Segment id="board-segment">
         <div id="board">
           <div className="row">
-            <Square value={squares[0]} index={0} clickMethod={this.handleSquareClick}/>
+            <Square value={squares[0]} index={0} clickMethod={this.handleSquareClick} activePlayer={activePlayer}/>
             <div className="top-column" />
-            <Square value={squares[1]} index={1} clickMethod={this.handleSquareClick}/>
+            <Square value={squares[1]} index={1} clickMethod={this.handleSquareClick} activePlayer={activePlayer}/>
             <div className="top-column" />
-            <Square value={squares[2]} index={2} clickMethod={this.handleSquareClick}/>
+            <Square value={squares[2]} index={2} clickMethod={this.handleSquareClick} activePlayer={activePlayer}/>
           </div>
           <div className="board-row" />
           <div className="row" id="center-row">
-            <Square value={squares[3]} index={3} clickMethod={this.handleSquareClick}/>
+            <Square value={squares[3]} index={3} clickMethod={this.handleSquareClick} activePlayer={activePlayer}/>
             <div className="middle-column" />
-            <Square value={squares[4]} index={4} clickMethod={this.handleSquareClick}/>
+            <Square value={squares[4]} index={4} clickMethod={this.handleSquareClick} activePlayer={activePlayer}/>
             <div className="middle-column" />
-            <Square value={squares[5]} index={5} clickMethod={this.handleSquareClick}/>
+            <Square value={squares[5]} index={5} clickMethod={this.handleSquareClick} activePlayer={activePlayer}/>
           </div>
           <div className="board-row" />
           <div className="row">
-            <Square value={squares[6]} index={6} clickMethod={this.handleSquareClick}/>
+            <Square value={squares[6]} index={6} clickMethod={this.handleSquareClick} activePlayer={activePlayer}/>
             <div className="bottom-column" />
-            <Square value={squares[7]} index={7} clickMethod={this.handleSquareClick}/>
+            <Square value={squares[7]} index={7} clickMethod={this.handleSquareClick} activePlayer={activePlayer}/>
             <div className="bottom-column" />
-            <Square value={squares[8]} index={8} clickMethod={this.handleSquareClick}/>
+            <Square value={squares[8]} index={8} clickMethod={this.handleSquareClick} activePlayer={activePlayer}/>
           </div>
         </div>
         <div className="button">
@@ -59,5 +61,9 @@ class Board extends Component {
     );
   }
 };
+
+Board.propTypes = {
+  activePlayer: PropTypes.string.isRequired
+}
 
 export default Board;
