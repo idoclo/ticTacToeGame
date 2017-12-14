@@ -17,7 +17,7 @@ const GameInfo = ({ player1, player2, activePlayer }) => {
           <Table.Row className="game-info-row">
             <Table.HeaderCell>Player</Table.HeaderCell>
             <Table.HeaderCell>Piece</Table.HeaderCell>
-            <Table.HeaderCell>Turn</Table.HeaderCell>
+            <Table.HeaderCell>It{"'"}s your turn</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 

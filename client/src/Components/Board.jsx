@@ -11,12 +11,36 @@ class Board extends Component {
       squares: Array(9).fill(null),
     };
     this.handleSquareClick = this.handleSquareClick.bind(this);
+    this.handleReset = this.handleReset.bind(this);
   }
 
   handleSquareClick(index, piece) {
     const { squares } = this.state;
     squares[index] = piece;
     this.setState({ squares });
+  }
+
+  handleReset(event, { value }) {
+    const myHeaders = {
+      'Accept': 'application/json, text/plain, */*',
+      'content-type': 'application/json'
+    };
+    const payload = { value };
+    const myInit = {
+      method: 'POST',
+      headers: myHeaders,
+      mode: 'cors',
+      body: JSON.stringify(payload),
+      json: true
+    };
+    fetch(`/game/${value}`, myInit)
+    .then(res => res.json())
+    .then(resJSON => {
+      this.setState({ squares: resJSON });
+    })
+    .catch(err => {
+      console.error('not able to fetch from /game', err);
+    })
   }
 
   render() {
@@ -53,7 +77,7 @@ class Board extends Component {
           </div>
         </div>
         <div className="button">
-          <Button color={buttonColour}>
+          <Button color={buttonColour} value="Reset" onClick={this.handleReset}>
             {buttonText}
           </Button>
         </div>
