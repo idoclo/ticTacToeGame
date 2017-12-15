@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { Header, Image, Table, Icon } from 'semantic-ui-react'
 
 
-const GameInfo = ({ player1, player2, activePlayer }) => {
-  const player1Turn = activePlayer === 'player1';
-  const player2Turn = activePlayer === 'player2';
+const GameInfo = ({ playerX, playerO, activePlayer }) => {
+  const playerXTurn = activePlayer === 'playerX';
+  const playerOTurn = activePlayer === 'playerO';
   return (
     <div id="game-info-segment">
       <Table
@@ -31,8 +31,8 @@ const GameInfo = ({ player1, player2, activePlayer }) => {
                   size='mini'
                 />
                 <Header.Content>
-                    {player1}
-                  <Header.Subheader>Player 1</Header.Subheader>
+                    {playerX}
+                  <Header.Subheader>Player X</Header.Subheader>
                 </Header.Content>
               </Header>
             </Table.Cell>
@@ -40,7 +40,7 @@ const GameInfo = ({ player1, player2, activePlayer }) => {
               X
             </Table.Cell>
             <Table.Cell>
-              {player1Turn ? <Icon color="teal" name="arrow left" size="large"/> : null}
+              {playerXTurn ? <Icon color="teal" name="arrow left" size="large"/> : null}
             </Table.Cell>
           </Table.Row>
           <Table.Row className="game-info-row">
@@ -52,8 +52,8 @@ const GameInfo = ({ player1, player2, activePlayer }) => {
                   size='mini'
                 />
                 <Header.Content>
-                    {player2}
-                  <Header.Subheader>Player 2</Header.Subheader>
+                    {playerO}
+                  <Header.Subheader>Player O</Header.Subheader>
                 </Header.Content>
               </Header>
             </Table.Cell>
@@ -61,7 +61,7 @@ const GameInfo = ({ player1, player2, activePlayer }) => {
               O
             </Table.Cell>
             <Table.Cell>
-              {player2Turn ? <Icon color="teal" name="arrow left" size="large"/> : null}
+              {playerOTurn ? <Icon color="teal" name="arrow left" size="large"/> : null}
             </Table.Cell>
           </Table.Row>
         </Table.Body>
@@ -71,8 +71,8 @@ const GameInfo = ({ player1, player2, activePlayer }) => {
 };
 
 GameInfo.propTypes = {
-  player1: PropTypes.string.isRequired,
-  player2: PropTypes.string.isRequired,
+  playerX: PropTypes.string.isRequired,
+  playerO: PropTypes.string.isRequired,
   activePlayer: PropTypes.string.isRequired
 }
 

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 const Square = ({ value, index, clickMethod, activePlayer }) => {
   const handleClick = (i) => {
-    const piece = activePlayer === 'player1' ? 'X' : 'O';
+    const piece = activePlayer === 'playerX' ? 'X' : 'O';
     clickMethod(i, piece);
   }
 
@@ -13,7 +13,7 @@ const Square = ({ value, index, clickMethod, activePlayer }) => {
   if (value === 'X') {
     icon = <Icon name="remove" size="huge" color="brown"/>;
   } else if (value === 'O') {
-    icon = <Icon name="radio" size ="huge" color="grey"/>;
+    icon = <Icon name="radio" size ="huge" color="orange"/>;
   } else {
     icon = null;
   }

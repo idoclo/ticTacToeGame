@@ -12,7 +12,7 @@ body {
 }
 
 #info-and-scoreboard {
-  margin-top: 5%;
+  margin-top: 2%;
 }
 
 
@@ -24,6 +24,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 2%;
 }
 
 #board {
@@ -32,12 +33,22 @@ body {
   justify-content: center;
   width: 50%;
   align-items: center;
+  margin-bottom: 5%;
+}
+
+#player-initiation-segment {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 2%;
 }
 
 .button {
-  margin-top: 5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   text-align: center;
-  width: 50%;
+  width: 40%;
 }
 
 .row {
