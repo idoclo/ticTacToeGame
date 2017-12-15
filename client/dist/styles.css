@@ -15,6 +15,10 @@ body {
   margin-top: 2%;
 }
 
+/*#game-info-segment {
+  display: flex;
+  justify-content: center;
+}*/
 
 .game-info-row {
   text-align: center;

@@ -11,9 +11,9 @@ const Square = ({ value, index, clickMethod, activePlayer }) => {
 
   let icon;
   if (value === 'X') {
-    icon = <Icon name="remove" size="huge" color="brown"/>;
+    icon = <Icon name="remove" size="huge" color="red"/>;
   } else if (value === 'O') {
-    icon = <Icon name="radio" size ="huge" color="orange"/>;
+    icon = <Icon name="radio" size ="huge" color="violet"/>;
   } else {
     icon = null;
   }

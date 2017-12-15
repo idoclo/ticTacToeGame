@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Header, Segment, Modal, Button } from 'semantic-ui-react';
+import { Header, Segment, Modal, Button, Icon } from 'semantic-ui-react';
 import GameInfo from './GameInfo';
 import Board from './Board';
 import PlayerForm from './PlayerForm';
@@ -63,7 +63,7 @@ class App extends Component {
           <Modal
             trigger={
               <div className="button">
-                <Button basic color="red">Player X</Button>
+                <Button color="red">Player <Icon name="remove"></Icon></Button>
               </div>
             }
             size="small"
@@ -73,7 +73,7 @@ class App extends Component {
           <Modal
             trigger={
               <div className="button">
-                <Button basic color="yellow">Player O</Button>
+                <Button color="violet">Player <Icon name="radio"></Icon></Button>
               </div>
             }
             size="small"

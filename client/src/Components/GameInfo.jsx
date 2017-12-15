@@ -32,12 +32,11 @@ const GameInfo = ({ playerX, playerO, activePlayer }) => {
                 />
                 <Header.Content>
                     {playerX}
-                  <Header.Subheader>Player X</Header.Subheader>
                 </Header.Content>
               </Header>
             </Table.Cell>
             <Table.Cell>
-              X
+              <Icon name="remove"></Icon>
             </Table.Cell>
             <Table.Cell>
               {playerXTurn ? <Icon color="teal" name="arrow left" size="large"/> : null}
@@ -53,12 +52,11 @@ const GameInfo = ({ playerX, playerO, activePlayer }) => {
                 />
                 <Header.Content>
                     {playerO}
-                  <Header.Subheader>Player O</Header.Subheader>
                 </Header.Content>
               </Header>
             </Table.Cell>
             <Table.Cell>
-              O
+              <Icon name="radio"></Icon>
             </Table.Cell>
             <Table.Cell>
               {playerOTurn ? <Icon color="teal" name="arrow left" size="large"/> : null}
