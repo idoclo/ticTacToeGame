@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon } from 'semantic-ui-react';
+import { Icon, Divider } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
 
@@ -28,6 +28,7 @@ const Square = ({ value, index, clickMethod, activePlayer }) => {
     </div>
   )
 };
+
 
 Square.propTypes = {
   value: PropTypes.string.isRequired,

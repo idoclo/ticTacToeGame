@@ -20,6 +20,10 @@ body {
   justify-content: center;
 }*/
 
+.player-form {
+  margin: 10%;
+}
+
 .game-info-row {
   text-align: center;
 }

@@ -36,7 +36,7 @@ const GameInfo = ({ playerX, playerO, activePlayer }) => {
               </Header>
             </Table.Cell>
             <Table.Cell>
-              <Icon name="remove"></Icon>
+              <Icon name="remove" />
             </Table.Cell>
             <Table.Cell>
               {playerXTurn ? <Icon color="teal" name="arrow left" size="large"/> : null}
@@ -56,7 +56,7 @@ const GameInfo = ({ playerX, playerO, activePlayer }) => {
               </Header>
             </Table.Cell>
             <Table.Cell>
-              <Icon name="radio"></Icon>
+              <Icon name="radio" />
             </Table.Cell>
             <Table.Cell>
               {playerOTurn ? <Icon color="teal" name="arrow left" size="large"/> : null}

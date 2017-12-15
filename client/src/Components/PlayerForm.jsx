@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form } from 'semantic-ui-react';
+import { Header, Icon, Form, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types'
 
 
@@ -27,18 +27,32 @@ class PlayerForm extends Component {
   }
 
   render() {
+    const { playerSymbol } = this.props;
+    const iconName = playerSymbol === 'X' ? 'remove' : 'radio';
     return (
-      <Form>
-        <Form.Input label="Username" placeholder="Username" onChange={this.handleUsernameInput} />
-        <Form.Input label="Email" placeholder="Email" onChange={this.handleEmailInput} />
-      </Form>
+      <div className="player-form">
+        <Header size="medium">
+          Please enter your details
+          <Header.Subheader>
+            You will be player <Icon name={iconName}/>
+          </Header.Subheader>
+        </Header>
+        <Form>
+          <Form.Input label="Username" placeholder="Username" onChange={this.handleUsernameInput} />
+          <Form.Input label="Email" placeholder="Email" onChange={this.handleEmailInput} />
+        </Form>
+        <Button>
+          Enter
+        </Button>
+        </div>
     );
   }
 };
 
 PlayerForm.propTypes = {
   updatePlayer: PropTypes.func.isRequired,
-  updatePlayerEmail: PropTypes.func.isRequired
+  updatePlayerEmail: PropTypes.func.isRequired,
+  playerSymbol: PropTypes.string.isRequired
 };
 
 

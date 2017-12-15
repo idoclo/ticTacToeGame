@@ -63,22 +63,38 @@ class App extends Component {
           <Modal
             trigger={
               <div className="button">
-                <Button color="red">Player <Icon name="remove"></Icon></Button>
+                <Button color="red" animated="fade">
+                  <Button.Content visible>
+                    Player <Icon name="remove" />
+                  </Button.Content>
+                  <Button.Content hidden>
+                    Enter details
+                  </Button.Content>
+                </Button>
               </div>
             }
-            size="small"
+            size="mini"
+            closeIcon
           >
-            <PlayerForm updatePlayer={this.updatePlayerX} updatePlayerEmail={this.updatePlayerXEmail}/>
+            <PlayerForm updatePlayer={this.updatePlayerX} updatePlayerEmail={this.updatePlayerXEmail} playerSymbol="X"/>
           </Modal>
           <Modal
             trigger={
               <div className="button">
-                <Button color="violet">Player <Icon name="radio"></Icon></Button>
+                <Button color="violet" animated="fade">
+                  <Button.Content visible>
+                    Player <Icon name="radio" />
+                  </Button.Content>
+                  <Button.Content hidden>
+                    Enter details
+                  </Button.Content>
+                </Button>
               </div>
             }
-            size="small"
+            size="mini"
+            closeIcon
           >
-            <PlayerForm updatePlayer={this.updatePlayerO} updatePlayerEmail={this.updatePlayerOEmail}/>
+            <PlayerForm updatePlayer={this.updatePlayerO} updatePlayerEmail={this.updatePlayerOEmail} playerSymbol="O"/>
           </Modal>
         </Segment>
         <Segment id="info-and-scoreboard">
