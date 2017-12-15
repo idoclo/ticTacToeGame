@@ -1,4 +1,5 @@
 import React from 'react';
+import { Icon } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
 
@@ -8,13 +9,22 @@ const Square = ({ value, index, clickMethod, activePlayer }) => {
     clickMethod(i, piece);
   }
 
+  let icon;
+  if (value === 'X') {
+    icon = <Icon name="remove" size="huge" color="brown"/>;
+  } else if (value === 'O') {
+    icon = <Icon name="radio" size ="huge" color="grey"/>;
+  } else {
+    icon = null;
+  }
+
   return (
     <div
       className="square"
       role="presentation"
       onClick={() => handleClick(index)}
     >
-      {value}
+      {icon}
     </div>
   )
 };
