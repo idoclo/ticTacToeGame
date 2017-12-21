@@ -75,33 +75,88 @@ class Board extends Component {
     const filledSquareRegEx = /X|O/;
     const buttonTextVisible = filledSquareRegEx.test(squares) ? 'Reset' : 'Start';
     const buttonColour = filledSquareRegEx.test(squares) ? 'blue' : 'green';
-    const { activePlayer } = this.props;
+    const { activePlayer, toggleActivePlayer } = this.props;
 
     return (
       <Segment id="board-segment">
         <div id="board">
           <div className="row">
-            <Square value={squares[0]} index={0} clickMethod={this.handleSquareClick} activePlayer={activePlayer} gameId={this.state.gameId}/>
+            <Square
+              value={squares[0]}
+              index={0}
+              clickMethod={this.handleSquareClick}
+              activePlayer={activePlayer}
+              toggleActivePlayer={toggleActivePlayer}
+              // gameId={this.state.gameId}
+            />
             <div className="top-column" />
-            <Square value={squares[1]} index={1} clickMethod={this.handleSquareClick} activePlayer={activePlayer}/>
+            <Square
+              value={squares[1]}
+              index={1}
+              clickMethod={this.handleSquareClick}
+              activePlayer={activePlayer}
+              toggleActivePlayer={toggleActivePlayer}
+            />
             <div className="top-column" />
-            <Square value={squares[2]} index={2} clickMethod={this.handleSquareClick} activePlayer={activePlayer}/>
+            <Square
+              value={squares[2]}
+              index={2}
+              clickMethod={this.handleSquareClick}
+              activePlayer={activePlayer}
+              toggleActivePlayer={toggleActivePlayer}
+            />
           </div>
           <div className="board-row" />
           <div className="row" id="center-row">
-            <Square value={squares[3]} index={3} clickMethod={this.handleSquareClick} activePlayer={activePlayer}/>
+            <Square
+              value={squares[3]}
+              index={3}
+              clickMethod={this.handleSquareClick}
+              activePlayer={activePlayer}
+              toggleActivePlayer={toggleActivePlayer}
+            />
             <div className="middle-column" />
-            <Square value={squares[4]} index={4} clickMethod={this.handleSquareClick} activePlayer={activePlayer}/>
+            <Square
+              value={squares[4]}
+              index={4}
+              clickMethod={this.handleSquareClick}
+              activePlayer={activePlayer}
+              toggleActivePlayer={toggleActivePlayer}
+            />
             <div className="middle-column" />
-            <Square value={squares[5]} index={5} clickMethod={this.handleSquareClick} activePlayer={activePlayer}/>
+            <Square
+              value={squares[5]}
+              index={5}
+              clickMethod={this.handleSquareClick}
+              activePlayer={activePlayer}
+              toggleActivePlayer={toggleActivePlayer}
+            />
           </div>
           <div className="board-row" />
           <div className="row">
-            <Square value={squares[6]} index={6} clickMethod={this.handleSquareClick} activePlayer={activePlayer}/>
+            <Square
+              value={squares[6]}
+              index={6}
+              clickMethod={this.handleSquareClick}
+              activePlayer={activePlayer}
+              toggleActivePlayer={toggleActivePlayer}
+            />
             <div className="bottom-column" />
-            <Square value={squares[7]} index={7} clickMethod={this.handleSquareClick} activePlayer={activePlayer}/>
+            <Square
+              value={squares[7]}
+              index={7}
+              clickMethod={this.handleSquareClick}
+              activePlayer={activePlayer}
+              toggleActivePlayer={toggleActivePlayer}
+            />
             <div className="bottom-column" />
-            <Square value={squares[8]} index={8} clickMethod={this.handleSquareClick} activePlayer={activePlayer}/>
+            <Square
+              value={squares[8]}
+              index={8}
+              clickMethod={this.handleSquareClick}
+              activePlayer={activePlayer}
+              toggleActivePlayer={toggleActivePlayer}
+            />
           </div>
         </div>
         <div className="button">

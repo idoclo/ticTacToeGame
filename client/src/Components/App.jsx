@@ -16,7 +16,7 @@ class App extends Component {
     };
     this.updatePlayerX = this.updatePlayerX.bind(this);
     this.updatePlayerO = this.updatePlayerO.bind(this);
-    this.updateActivePlayer = this.updateActivePlayer.bind(this);
+    this.toggleActivePlayer = this.toggleActivePlayer.bind(this);
     this.updateGameId = this.updateGameId.bind(this);
   }
 
@@ -35,8 +35,8 @@ class App extends Component {
     this.setState({ playerO });
   }
 
-  updateActivePlayer(activePlayer) {
-    this.setState({ activePlayer });
+  toggleActivePlayer(newActivePlayer) {
+    this.setState({ activePlayer: newActivePlayer });
   }
 
   updateGameId(gameId) {
@@ -99,7 +99,12 @@ class App extends Component {
             activePlayer={activePlayer}
           />
         </Segment>
-        <Board playerX={playerX} playerO={playerO} activePlayer={activePlayer} />
+        <Board
+          playerX={playerX}
+          playerO={playerO}
+          activePlayer={activePlayer}
+          toggleActivePlayer={this.toggleActivePlayer}
+        />
       </div>
     );
   }

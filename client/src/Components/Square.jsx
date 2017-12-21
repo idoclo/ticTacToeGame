@@ -3,10 +3,13 @@ import { Icon } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
 
-const Square = ({ value, index, clickMethod, activePlayer, gameId }) => {
+const Square = ({ value, index, clickMethod, activePlayer, toggleActivePlayer, gameId }) => {
   const handleClick = (i) => {
     const piece = activePlayer === 'playerX' ? 'X' : 'O';
     clickMethod(i, piece);
+    // update active player piece
+    const newActivePlayer = piece === 'X' ? 'playerO' : 'playerX';
+    toggleActivePlayer(newActivePlayer);
   }
   console.log('gameId in square', gameId);
   let icon;
