@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Segment, Button, Icon } from 'semantic-ui-react';
+import { Segment, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import Square from './Square';
 
@@ -8,26 +8,45 @@ class Board extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      squares: Array(9).fill(''),
-      visible: true
+      squares: Array(9).fill(null),
+      gameId: null
     };
     this.handleSquareClick = this.handleSquareClick.bind(this);
     this.handleReset = this.handleReset.bind(this);
-    this.toggleVisibility = this.toggleVisibility.bind(this);
+  }
+
+  componentDidMount() {
+    const { gameId } = this.state;
+    console.log('gameId', gameId);
   }
 
   handleSquareClick(index, piece) {
+    const { playerX, playerO } = this.props;
     const { squares } = this.state;
-    squares[index] = piece;
-    this.setState({ squares });
+
+    if (!playerX.length) {
+      window.alert('Need player X');
+    } else if (!playerO.length) {
+      window.alert('Need player O');
+    } else {
+      squares[index] = piece;
+      this.setState({ squares });
+    }
   }
 
   handleReset(event, { value }) {
+    const { playerX, playerO } = this.props;
+    const { gameId } = this.state;
     const myHeaders = {
       'Accept': 'application/json, text/plain, */*',
       'content-type': 'application/json'
     };
-    const payload = { value };
+    const payload = {
+      value,
+      playerX,
+      playerO
+    };
+    console.log(payload);
     const myInit = {
       method: 'POST',
       headers: myHeaders,
@@ -35,32 +54,34 @@ class Board extends Component {
       body: JSON.stringify(payload),
       json: true
     };
-    fetch(`/game/${value}`, myInit)
+    fetch(`/games/${value}`, myInit)
     .then(res => res.json())
     .then(resJSON => {
-      this.setState({ squares: resJSON });
+      // console.log(`board back from server ${resJSON}, ${typeof resJSON}`);
+      const { game_id, board } = resJSON;
+      console.log('game_id', game_id, 'board', board);
+      this.setState({
+        squares: board,
+        gameId: game_id
+      });
     })
     .catch(err => {
-      console.error('not able to fetch from /game', err);
+      console.error('not able to fetch from /games', err);
     })
-  }
-
-  toggleVisibility() {
-    this.setState({ visible: !this.state.visible });
   }
 
   render() {
     const { squares } = this.state;
     const filledSquareRegEx = /X|O/;
     const buttonTextVisible = filledSquareRegEx.test(squares) ? 'Reset' : 'Start';
-    const buttonIconHidden = filledSquareRegEx.test(squares) ? 'repeat' : 'wizard';
     const buttonColour = filledSquareRegEx.test(squares) ? 'blue' : 'green';
     const { activePlayer } = this.props;
+
     return (
       <Segment id="board-segment">
         <div id="board">
           <div className="row">
-            <Square value={squares[0]} index={0} clickMethod={this.handleSquareClick} activePlayer={activePlayer}/>
+            <Square value={squares[0]} index={0} clickMethod={this.handleSquareClick} activePlayer={activePlayer} gameId={this.state.gameId}/>
             <div className="top-column" />
             <Square value={squares[1]} index={1} clickMethod={this.handleSquareClick} activePlayer={activePlayer}/>
             <div className="top-column" />
@@ -86,16 +107,10 @@ class Board extends Component {
         <div className="button">
           <Button
             color={buttonColour}
-            value="Reset"
+            value="reset"
             onClick={this.handleReset}
-            animated="vertical"
           >
-            <Button.Content visible>
-              {buttonTextVisible}
-            </Button.Content>
-            <Button.Content hidden>
-              <Icon name={buttonIconHidden} />
-            </Button.Content>
+            {buttonTextVisible}
           </Button>
         </div>
       </Segment>
@@ -104,7 +119,11 @@ class Board extends Component {
 };
 
 Board.propTypes = {
-  activePlayer: PropTypes.string.isRequired
-}
+  playerX: PropTypes.string.isRequired,
+  playerO: PropTypes.string.isRequired,
+  activePlayer: PropTypes.string.isRequired,
+  // gameId: PropTypes.number.isRequired,
+  // updateGameId: PropTypes.func.isRequired
+};
 
 export default Board;

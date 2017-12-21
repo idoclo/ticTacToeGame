@@ -1,14 +1,14 @@
 import React from 'react';
-import { Icon, Divider } from 'semantic-ui-react';
+import { Icon } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
 
-const Square = ({ value, index, clickMethod, activePlayer }) => {
+const Square = ({ value, index, clickMethod, activePlayer, gameId }) => {
   const handleClick = (i) => {
     const piece = activePlayer === 'playerX' ? 'X' : 'O';
     clickMethod(i, piece);
   }
-
+  console.log('gameId in square', gameId);
   let icon;
   if (value === 'X') {
     icon = <Icon name="remove" size="huge" color="red"/>;

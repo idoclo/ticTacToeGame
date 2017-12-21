@@ -6,9 +6,9 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const config = {
   entry: [
-    'react-hot-loader/patch',
-    'webpack-dev-server/client?http://localhost:5000',
-    'webpack/hot/only-dev-server',
+    'react-hot-loader/patch', // for hot module replacement
+    'webpack-dev-server/client?http://localhost:5000', // for hot module replacement
+    'webpack/hot/only-dev-server', // for hot module replacement
     `${SRC_DIR}/index.jsx`
   ],
   devtool: 'cheap-eval-source-map',
@@ -21,18 +21,18 @@ const config = {
   devServer: {
     hot: true,
     publicPath: '/',
-    historyApiFallback: true,
+    historyApiFallback: true, // Telling dev server if it doesn't recognise something send it down to the client, and let the client worry about the routing. 404s will fall back to /index.html
     inline: false,
     contentBase: DIST_DIR
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.json', '.css']
+    extensions: ['.js', '.jsx', '.json', '.css'] // order of resolutions.
   },
-  // states: {
-  //   colors: true,
-  //   reasons: true,
-  //   chunks: true
-  // },
+  stats: {
+    colors: true,
+    reasons: true,
+    chunks: true
+  },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
@@ -50,9 +50,9 @@ const config = {
         test: /\.jsx?$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
-        query: {
-          presets: ['react', 'es2015']
-        }
+        // query: {
+        //   presets: ['react', 'es2015'] // these presets can be included in the .babelrc file instead. If included here, no need for .babelrc file.
+        // }
       },
       {
         test: /\.css/,

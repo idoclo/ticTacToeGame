@@ -10,16 +10,14 @@ class App extends Component {
     super();
     this.state = {
       playerX: '',
-      playerXEmail: '',
       playerO: '',
-      playerOEmail: '',
-      activePlayer: 'playerX'
+      activePlayer: 'playerX',
+      // gameId: 0
     };
     this.updatePlayerX = this.updatePlayerX.bind(this);
-    this.updatePlayerXEmail = this.updatePlayerXEmail.bind(this);
     this.updatePlayerO = this.updatePlayerO.bind(this);
-    this.updatePlayerOEmail = this.updatePlayerOEmail.bind(this);
     this.updateActivePlayer = this.updateActivePlayer.bind(this);
+    this.updateGameId = this.updateGameId.bind(this);
   }
 
   componentWillMount() {
@@ -33,24 +31,21 @@ class App extends Component {
     this.setState({ playerX });
   }
 
-  updatePlayerXEmail(email) {
-    this.setState({ playerXEmail: email });
-  }
-
   updatePlayerO(playerO) {
     this.setState({ playerO });
-  }
-
-  updatePlayerOEmail(email) {
-    this.setState({ playerOEmail: email });
   }
 
   updateActivePlayer(activePlayer) {
     this.setState({ activePlayer });
   }
 
+  updateGameId(gameId) {
+    console.log(`gameId: ${gameId}`);
+    this.setState({ gameId });
+  }
+
   render() {
-    const { playerX, playerO, activePlayer } = this.state;
+    const { playerX, playerO, activePlayer, gameId, updateGameId } = this.state;
     return (
       <div id="body">
         <Header size="huge" className="header">
@@ -76,7 +71,7 @@ class App extends Component {
             size="mini"
             closeIcon
           >
-            <PlayerForm updatePlayer={this.updatePlayerX} updatePlayerEmail={this.updatePlayerXEmail} playerSymbol="X"/>
+            <PlayerForm updatePlayer={this.updatePlayerX} playerSymbol="X" />
           </Modal>
           <Modal
             trigger={
@@ -94,7 +89,7 @@ class App extends Component {
             size="mini"
             closeIcon
           >
-            <PlayerForm updatePlayer={this.updatePlayerO} updatePlayerEmail={this.updatePlayerOEmail} playerSymbol="O"/>
+            <PlayerForm updatePlayer={this.updatePlayerO} playerSymbol="O" />
           </Modal>
         </Segment>
         <Segment id="info-and-scoreboard">
@@ -104,7 +99,7 @@ class App extends Component {
             activePlayer={activePlayer}
           />
         </Segment>
-        <Board activePlayer={activePlayer}/>
+        <Board playerX={playerX} playerO={playerO} activePlayer={activePlayer} />
       </div>
     );
   }
