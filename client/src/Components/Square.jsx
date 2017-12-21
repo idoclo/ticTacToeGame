@@ -5,13 +5,19 @@ import PropTypes from 'prop-types';
 
 const Square = ({ value, index, clickMethod, activePlayer, toggleActivePlayer, gameId }) => {
   const handleClick = (i) => {
-    const piece = activePlayer === 'playerX' ? 'X' : 'O';
-    clickMethod(i, piece);
-    // update active player piece
-    const newActivePlayer = piece === 'X' ? 'playerO' : 'playerX';
-    toggleActivePlayer(newActivePlayer);
+    if (!gameId) {
+      window.alert('Awaiting both players to enter details before commencing game...');
+    } else if (value) {
+      window.alert('Square occupied - please pick another square.');
+    } else {
+      const piece = activePlayer === 'playerX' ? 'X' : 'O';
+      clickMethod(i, piece);
+      // update active player piece
+      const newActivePlayer = piece === 'X' ? 'playerO' : 'playerX';
+      toggleActivePlayer(newActivePlayer);
+    }
   }
-  console.log('gameId in square', gameId);
+  
   let icon;
   if (value === 'X') {
     icon = <Icon name="remove" size="huge" color="red"/>;

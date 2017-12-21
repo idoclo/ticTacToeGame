@@ -12,40 +12,64 @@ class App extends Component {
       playerX: '',
       playerO: '',
       activePlayer: 'playerX',
-      // gameId: 0
+      modalOpenX: false,
+      modalOpenO: false
     };
     this.updatePlayerX = this.updatePlayerX.bind(this);
     this.updatePlayerO = this.updatePlayerO.bind(this);
     this.toggleActivePlayer = this.toggleActivePlayer.bind(this);
-    this.updateGameId = this.updateGameId.bind(this);
+    this.handleModalOpenX = this.handleModalOpenX.bind(this);
+    this.handleModalCloseX = this.handleModalCloseX.bind(this);
+    this.handleModalOpenO = this.handleModalOpenO.bind(this);
+    this.handleModalCloseO = this.handleModalCloseO.bind(this);
   }
 
-  componentWillMount() {
-    this.setState({
-      playerX: 'Chris',
-      playerO: 'Allen'
-    });
+  // componentWillMount() {
+  //   this.setState({
+  //     playerX: 'Chris',
+  //     playerO: 'Allen'
+  //   });
+  // }
+
+  updatePlayerX(player_X) {
+    this.setState({ playerX: player_X });
   }
 
-  updatePlayerX(playerX) {
-    this.setState({ playerX });
-  }
-
-  updatePlayerO(playerO) {
-    this.setState({ playerO });
+  updatePlayerO(player_O) {
+    this.setState({ playerO: player_O });
   }
 
   toggleActivePlayer(newActivePlayer) {
     this.setState({ activePlayer: newActivePlayer });
   }
 
-  updateGameId(gameId) {
-    console.log(`gameId: ${gameId}`);
-    this.setState({ gameId });
+  handleModalOpenX() {
+    this.setState({ modalOpenX: true });
+  }
+
+  handleModalCloseX() {
+    this.setState({ modalOpenX: false });
+  }
+
+  handleModalOpenO() {
+    this.setState({ modalOpenO: true });
+  }
+
+  handleModalCloseO() {
+    this.setState({ modalOpenO: false });
   }
 
   render() {
-    const { playerX, playerO, activePlayer, gameId, updateGameId } = this.state;
+    const { playerX, playerO, activePlayer, gameId, modalOpenX, modalOpenO } = this.state;
+    const board = (playerX.length && playerO.length) ?
+      <Board
+        playerX={playerX}
+        playerO={playerO}
+        activePlayer={activePlayer}
+        toggleActivePlayer={this.toggleActivePlayer}
+      /> :
+      null;
+
     return (
       <div id="body">
         <Header size="huge" className="header">
@@ -57,7 +81,7 @@ class App extends Component {
         <Segment id="player-initiation-segment">
           <Modal
             trigger={
-              <div className="button">
+              <div className="button" onClick={this.handleModalOpenX}>
                 <Button color="red" animated="fade">
                   <Button.Content visible>
                     Player <Icon name="remove" />
@@ -69,13 +93,18 @@ class App extends Component {
               </div>
             }
             size="mini"
-            closeIcon
+            open={modalOpenX}
+            onClose={this.handleModalCloseX}
           >
-            <PlayerForm updatePlayer={this.updatePlayerX} playerSymbol="X" />
+            <PlayerForm
+              updatePlayer={this.updatePlayerX}
+              playerSymbol="X"
+              handleModalClose={this.handleModalCloseX}
+            />
           </Modal>
           <Modal
             trigger={
-              <div className="button">
+              <div className="button" onClick={this.handleModalOpenO}>
                 <Button color="violet" animated="fade">
                   <Button.Content visible>
                     Player <Icon name="radio" />
@@ -87,9 +116,14 @@ class App extends Component {
               </div>
             }
             size="mini"
-            closeIcon
+            open={modalOpenO}
+            onClose={this.handleModalCloseO}
           >
-            <PlayerForm updatePlayer={this.updatePlayerO} playerSymbol="O" />
+            <PlayerForm
+              updatePlayer={this.updatePlayerO}
+              playerSymbol="O"
+              handleModalClose={this.handleModalCloseO}
+            />
           </Modal>
         </Segment>
         <Segment id="info-and-scoreboard">
@@ -99,12 +133,7 @@ class App extends Component {
             activePlayer={activePlayer}
           />
         </Segment>
-        <Board
-          playerX={playerX}
-          playerO={playerO}
-          activePlayer={activePlayer}
-          toggleActivePlayer={this.toggleActivePlayer}
-        />
+        {board}
       </div>
     );
   }

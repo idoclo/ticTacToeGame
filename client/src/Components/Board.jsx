@@ -15,6 +15,13 @@ class Board extends Component {
     this.handleReset = this.handleReset.bind(this);
   }
 
+  componentWillMount() {
+    const { playerX, playerO } = this.props;
+    if (playerX.length && playerO.length) {
+      this.handleReset(null, { value: 'reset' });
+    }
+  }
+
   componentDidMount() {
     const { gameId } = this.state;
     console.log('gameId', gameId);
@@ -32,6 +39,8 @@ class Board extends Component {
       squares[index] = piece;
       this.setState({ squares });
     }
+    console.log('updated board', squares);
+    // fetch function to send updated board to server along with gameId
   }
 
   handleReset(event, { value }) {
@@ -87,7 +96,7 @@ class Board extends Component {
               clickMethod={this.handleSquareClick}
               activePlayer={activePlayer}
               toggleActivePlayer={toggleActivePlayer}
-              // gameId={this.state.gameId}
+              gameId={this.state.gameId}
             />
             <div className="top-column" />
             <Square
@@ -96,6 +105,7 @@ class Board extends Component {
               clickMethod={this.handleSquareClick}
               activePlayer={activePlayer}
               toggleActivePlayer={toggleActivePlayer}
+              gameId={this.state.gameId}
             />
             <div className="top-column" />
             <Square
@@ -104,6 +114,7 @@ class Board extends Component {
               clickMethod={this.handleSquareClick}
               activePlayer={activePlayer}
               toggleActivePlayer={toggleActivePlayer}
+              gameId={this.state.gameId}
             />
           </div>
           <div className="board-row" />
@@ -114,6 +125,7 @@ class Board extends Component {
               clickMethod={this.handleSquareClick}
               activePlayer={activePlayer}
               toggleActivePlayer={toggleActivePlayer}
+              gameId={this.state.gameId}
             />
             <div className="middle-column" />
             <Square
@@ -122,6 +134,7 @@ class Board extends Component {
               clickMethod={this.handleSquareClick}
               activePlayer={activePlayer}
               toggleActivePlayer={toggleActivePlayer}
+              gameId={this.state.gameId}
             />
             <div className="middle-column" />
             <Square
@@ -130,6 +143,7 @@ class Board extends Component {
               clickMethod={this.handleSquareClick}
               activePlayer={activePlayer}
               toggleActivePlayer={toggleActivePlayer}
+              gameId={this.state.gameId}
             />
           </div>
           <div className="board-row" />
@@ -140,6 +154,7 @@ class Board extends Component {
               clickMethod={this.handleSquareClick}
               activePlayer={activePlayer}
               toggleActivePlayer={toggleActivePlayer}
+              gameId={this.state.gameId}
             />
             <div className="bottom-column" />
             <Square
@@ -148,6 +163,7 @@ class Board extends Component {
               clickMethod={this.handleSquareClick}
               activePlayer={activePlayer}
               toggleActivePlayer={toggleActivePlayer}
+              gameId={this.state.gameId}
             />
             <div className="bottom-column" />
             <Square
@@ -156,6 +172,7 @@ class Board extends Component {
               clickMethod={this.handleSquareClick}
               activePlayer={activePlayer}
               toggleActivePlayer={toggleActivePlayer}
+              gameId={this.state.gameId}
             />
           </div>
         </div>

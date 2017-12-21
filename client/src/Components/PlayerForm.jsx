@@ -21,15 +21,15 @@ class PlayerForm extends Component {
   }
 
   handleUsernameInput(event, { value }) {
-    const { updatePlayer } = this.props;
+    // const { updatePlayer } = this.props;
     console.log('handleUsernameInput', value);
     this.setState({ name: value });
-    updatePlayer(value);
+    // updatePlayer(value);
   }
 
   submitUsername() {
     const { name, status } = this.state;
-    const { playerSymbol } = this.props;
+    const { playerSymbol, handleModalClose, updatePlayer } = this.props;
     if (!status) {
       window.alert('Need to select existing or new player mate!');
     }
@@ -45,7 +45,11 @@ class PlayerForm extends Component {
         res.json()
       )
       .then(resJSON => {
-        console.log(resJSON);
+        console.log('Existing player details retrieved from db:', resJSON);
+        updatePlayer(resJSON.username);
+      })
+      .then(() => {
+        handleModalClose();
       })
       .catch(err => {
         console.error(`Error saving existing player: ${err}`);
@@ -67,14 +71,23 @@ class PlayerForm extends Component {
         json: true
       }
       fetch('/players/new', myInit)
-      .then(res =>
-        res.json()
-      )
+      .then(res => {
+        console.log('res.status', res.status);
+        if (res.status === 405) {
+          throw new Error('That username already exists in the db.');
+        }
+        return res.json()
+      })
       .then(resJSON => {
-        console.log('Player username inserted to db!', resJSON);
+        console.log('Player username inserted/exists in db!', resJSON);
+        if (resJSON)
+        updatePlayer(resJSON.username);
+      })
+      .then(() => {
+        handleModalClose();
       })
       .catch(err => {
-        throw new Error('Error inserting player username', err);
+        window.alert('That username already exists in the db.');
       });
     }
   }
