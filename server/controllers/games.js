@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const Game = require('../models/games.js');
 const Player = require('../models/players.js');
+const utils = require('./utils.js');
+
 
 router.post('/reset', (req, res) => {
   const { value, playerX, playerO } = req.body;
@@ -27,6 +29,15 @@ router.post('/reset', (req, res) => {
   .catch(error => {
     res.status(500).send(error.message);
   })
+});
+
+
+router.post('/move', (req, res) => {
+  const { squares, gameId } = req.body;
+  console.log('move POST obj', squares, gameId, req.body);
+  // Save move to the db
+
+  res.status(200).send('Hahah');
 });
 
 module.exports = router;

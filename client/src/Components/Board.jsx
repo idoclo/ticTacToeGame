@@ -11,6 +11,10 @@ class Board extends Component {
       squares: Array(9).fill(null),
       gameId: null
     };
+    this.headers = {
+      'Accept': 'application/json, text/plain, */*',
+      'content-type': 'application/json'
+    }
     this.handleSquareClick = this.handleSquareClick.bind(this);
     this.handleReset = this.handleReset.bind(this);
   }
@@ -29,7 +33,7 @@ class Board extends Component {
 
   handleSquareClick(index, piece) {
     const { playerX, playerO } = this.props;
-    const { squares } = this.state;
+    const { squares, gameId } = this.state;
 
     if (!playerX.length) {
       window.alert('Need player X');
@@ -39,26 +43,45 @@ class Board extends Component {
       squares[index] = piece;
       this.setState({ squares });
     }
-    console.log('updated board', squares);
     // fetch function to send updated board to server along with gameId
+    const payload = {
+      squares,
+      gameId
+    };
+    console.log('updated board', payload);
+    const move = {
+      method: 'POST',
+      headers: this.headers,
+      mode: 'cors',
+      body: JSON.stringify(payload),
+      json: true
+    };
+    fetch('/games/move', move)
+    .then(res => res.json())
+    .then(resJSON => {
+      console.log('resJSON move', resJSON);
+    })
+    .catch(err => {
+      console.error('Not able to make move to server', err);
+    });
   }
 
   handleReset(event, { value }) {
     const { playerX, playerO } = this.props;
     const { gameId } = this.state;
-    const myHeaders = {
-      'Accept': 'application/json, text/plain, */*',
-      'content-type': 'application/json'
-    };
+    // const myHeaders = {
+    //   'Accept': 'application/json, text/plain, */*',
+    //   'content-type': 'application/json'
+    // };
     const payload = {
       value,
       playerX,
       playerO
     };
-    console.log(payload);
+    // console.log(payload);
     const myInit = {
       method: 'POST',
-      headers: myHeaders,
+      headers: this.headers,
       mode: 'cors',
       body: JSON.stringify(payload),
       json: true
@@ -76,7 +99,7 @@ class Board extends Component {
     })
     .catch(err => {
       console.error('not able to fetch from /games', err);
-    })
+    });
   }
 
   render() {
