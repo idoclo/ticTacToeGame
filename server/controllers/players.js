@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Player = require('../models/players.js');
 
+
 router.get('/:username', (req, res) => {
   const username = req.params.username;
   console.log('Existing playerName sent down:', username);
@@ -15,6 +16,7 @@ router.get('/:username', (req, res) => {
     res.status(400).send('Username does not exist');
   });
 });
+
 
 router.post('/new', (req, res) => {
   const { username } = req.body;

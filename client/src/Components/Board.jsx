@@ -26,11 +26,6 @@ class Board extends Component {
     }
   }
 
-  componentDidMount() {
-    const { gameId } = this.state;
-    console.log('gameId', gameId);
-  }
-
   handleSquareClick(index, piece) {
     const { playerX, playerO, activePlayer } = this.props;
     const { squares, gameId } = this.state;
@@ -49,7 +44,6 @@ class Board extends Component {
       gameId,
       activePlayer
     };
-    console.log('updated board', payload);
     const move = {
       method: 'POST',
       headers: this.headers,
@@ -69,17 +63,11 @@ class Board extends Component {
 
   handleReset(event, { value }) {
     const { playerX, playerO } = this.props;
-    const { gameId } = this.state;
-    // const myHeaders = {
-    //   'Accept': 'application/json, text/plain, */*',
-    //   'content-type': 'application/json'
-    // };
     const payload = {
       value,
       playerX,
       playerO
     };
-    // console.log(payload);
     const myInit = {
       method: 'POST',
       headers: this.headers,
@@ -90,9 +78,7 @@ class Board extends Component {
     fetch(`/games/${value}`, myInit)
     .then(res => res.json())
     .then(resJSON => {
-      // console.log(`board back from server ${resJSON}, ${typeof resJSON}`);
       const { game_id, board } = resJSON;
-      console.log('game_id', game_id, 'board', board);
       this.setState({
         squares: board,
         gameId: game_id
@@ -214,12 +200,12 @@ class Board extends Component {
   }
 };
 
+
 Board.propTypes = {
   playerX: PropTypes.string.isRequired,
   playerO: PropTypes.string.isRequired,
   activePlayer: PropTypes.string.isRequired,
-  // gameId: PropTypes.number.isRequired,
-  // updateGameId: PropTypes.func.isRequired
+  toggleActivePlayer: PropTypes.func.isRequired
 };
 
 export default Board;

@@ -24,19 +24,13 @@ class App extends Component {
     this.handleModalCloseO = this.handleModalCloseO.bind(this);
   }
 
-  // componentWillMount() {
-  //   this.setState({
-  //     playerX: 'Chris',
-  //     playerO: 'Allen'
-  //   });
-  // }
 
-  updatePlayerX(player_X) {
-    this.setState({ playerX: player_X });
+  updatePlayerX(pX) {
+    this.setState({ playerX: pX });
   }
 
-  updatePlayerO(player_O) {
-    this.setState({ playerO: player_O });
+  updatePlayerO(pO) {
+    this.setState({ playerO: pO });
   }
 
   toggleActivePlayer(newActivePlayer) {
@@ -60,7 +54,7 @@ class App extends Component {
   }
 
   render() {
-    const { playerX, playerO, activePlayer, gameId, modalOpenX, modalOpenO } = this.state;
+    const { playerX, playerO, activePlayer, modalOpenX, modalOpenO } = this.state;
     const board = (playerX.length && playerO.length) ?
       <Board
         playerX={playerX}
@@ -81,7 +75,11 @@ class App extends Component {
         <Segment id="player-initiation-segment">
           <Modal
             trigger={
-              <div className="button" onClick={this.handleModalOpenX}>
+              <div
+                className="button"
+                onClick={this.handleModalOpenX}
+                role="presentation"
+              >
                 <Button color="red" animated="fade">
                   <Button.Content visible>
                     Player <Icon name="remove" />
@@ -104,7 +102,11 @@ class App extends Component {
           </Modal>
           <Modal
             trigger={
-              <div className="button" onClick={this.handleModalOpenO}>
+              <div
+                className="button"
+                onClick={this.handleModalOpenO}
+                role="presentation"
+              >
                 <Button color="violet" animated="fade">
                   <Button.Content visible>
                     Player <Icon name="radio" />

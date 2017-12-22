@@ -43,7 +43,9 @@ Square.propTypes = {
   value: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
   clickMethod: PropTypes.func.isRequired,
-  activePlayer: PropTypes.string.isRequired
+  activePlayer: PropTypes.string.isRequired,
+  toggleActivePlayer: PropTypes.func.isRequired,
+  gameId: PropTypes.number.isRequired
 };
 
 export default Square;

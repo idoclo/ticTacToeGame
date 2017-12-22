@@ -16,15 +16,11 @@ class PlayerForm extends Component {
   }
 
   handleExistingOrNew(event, { value }) {
-    console.log(value);
     this.setState({ status: value });
   }
 
   handleUsernameInput(event, { value }) {
-    // const { updatePlayer } = this.props;
-    console.log('handleUsernameInput', value);
     this.setState({ name: value });
-    // updatePlayer(value);
   }
 
   submitUsername() {
@@ -45,7 +41,7 @@ class PlayerForm extends Component {
         res.json()
       )
       .then(resJSON => {
-        console.log('Existing player details retrieved from db:', resJSON);
+        // console.log('Existing player details retrieved from db:', resJSON);
         updatePlayer(resJSON.username);
       })
       .then(() => {
@@ -62,7 +58,7 @@ class PlayerForm extends Component {
         playerStatus: status,
         playerSymbol
       };
-      console.log('payload to submit', payload);
+      // console.log('payload to submit', payload);
       const myInit = {
         method: status === 'existing' ? 'GET' : 'POST',
         headers: myHeaders,
@@ -72,14 +68,13 @@ class PlayerForm extends Component {
       }
       fetch('/players/new', myInit)
       .then(res => {
-        console.log('res.status', res.status);
         if (res.status === 405) {
           throw new Error('That username already exists in the db.');
         }
         return res.json()
       })
       .then(resJSON => {
-        console.log('Player username inserted/exists in db!', resJSON);
+        // console.log('Player username inserted/exists in db!', resJSON);
         if (resJSON)
         updatePlayer(resJSON.username);
       })
@@ -87,7 +82,7 @@ class PlayerForm extends Component {
         handleModalClose();
       })
       .catch(err => {
-        window.alert('That username already exists in the db.');
+        window.alert('That username already exists in the db.', err);
       });
     }
   }
@@ -106,11 +101,27 @@ class PlayerForm extends Component {
 
         <Form>
           <Button.Group>
-            <Button color="brown" value="existing" onClick={this.handleExistingOrNew}>Existing</Button>
+            <Button
+              color="brown"
+              value="existing"
+              onClick={this.handleExistingOrNew}
+            >
+              Existing
+            </Button>
             <Button.Or />
-            <Button color="grey" value="new" onClick={this.handleExistingOrNew}>New</Button>
+            <Button
+              color="grey"
+              value="new"
+              onClick={this.handleExistingOrNew}
+            >
+              New
+            </Button>
           </Button.Group>
-          <Form.Input label="Username" placeholder="Username" onChange={this.handleUsernameInput} />
+          <Form.Input
+            label="Username"
+            placeholder="Username"
+            onChange={this.handleUsernameInput}
+          />
         </Form>
         <Button onClick={this.submitUsername}>
           Enter
@@ -123,7 +134,8 @@ class PlayerForm extends Component {
 
 PlayerForm.propTypes = {
   updatePlayer: PropTypes.func.isRequired,
-  playerSymbol: PropTypes.string.isRequired
+  playerSymbol: PropTypes.string.isRequired,
+  handleModalClose: PropTypes.func.isRequired
 };
 
 

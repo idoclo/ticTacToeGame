@@ -68,6 +68,7 @@ const GameInfo = ({ playerX, playerO, activePlayer }) => {
   );
 };
 
+
 GameInfo.propTypes = {
   playerX: PropTypes.string.isRequired,
   playerO: PropTypes.string.isRequired,
