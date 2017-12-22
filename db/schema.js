@@ -8,8 +8,8 @@ const schema = db => (
   .then(() => {
     db.query('CREATE TABLE IF NOT EXISTS games(\
       game_id SERIAL PRIMARY KEY,\
-      player_X INT REFERENCES players ON DELETE CASCADE,\
-      player_O INT REFERENCES players ON DELETE CASCADE,\
+      playerX INT REFERENCES players ON DELETE CASCADE,\
+      playerO INT REFERENCES players ON DELETE CASCADE,\
       game_status VARCHAR(10),\
       board VARCHAR [],\
       winner INT REFERENCES players ON DELETE CASCADE,\

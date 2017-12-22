@@ -32,7 +32,7 @@ class Board extends Component {
   }
 
   handleSquareClick(index, piece) {
-    const { playerX, playerO } = this.props;
+    const { playerX, playerO, activePlayer } = this.props;
     const { squares, gameId } = this.state;
 
     if (!playerX.length) {
@@ -46,7 +46,8 @@ class Board extends Component {
     // fetch function to send updated board to server along with gameId
     const payload = {
       squares,
-      gameId
+      gameId,
+      activePlayer
     };
     console.log('updated board', payload);
     const move = {

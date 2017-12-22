@@ -1,23 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const Game = require('../models/games.js');
-const Player = require('../models/players.js');
 const utils = require('./utils.js');
 
 
 router.post('/reset', (req, res) => {
   const { value, playerX, playerO } = req.body;
-  // console.log('req.body from client:', req.body, value, playerX, playerO);
+  console.log('req.body from client:', req.body, value, playerX, playerO);
   Game.deactivateGames()
-  .then(() => (
-    Player.getByUsernames(playerX, playerO)
-  ))
-  .then(response => {
-    const playerXId = response[0].player_id;
-    const playerOId = response[1].player_id;
-    console.log('returned two player ids:', response, playerXId, playerOId);
-    return Game.start(playerXId, playerOId);
-  })
+
+  .then(() => 
+    Game.start(playerX, playerO)
+  )
   .then(response => {
     const { game_id, board } = response;
     console.log('game started', response);
@@ -33,11 +27,35 @@ router.post('/reset', (req, res) => {
 
 
 router.post('/move', (req, res) => {
-  const { squares, gameId } = req.body;
+  const { squares, gameId, activePlayer } = req.body;
   console.log('move POST obj', squares, gameId, req.body);
   // Save move to the db
+  Game.move(squares, gameId)
+  .then(response => {
+    console.log(response);
+    // Check if there is a winner
+    return utils.isWinner(squares);
+  })
+  .then(isWinnerRes => {
+    if (isWinnerRes) {
+      // Get activePlayerId and enter that as the winner in the db for the active game.
 
-  res.status(200).send('Hahah');
+      res.status(200).send(isWinnerRes);
+    } else {
+      // Check if there is a draw
+      return utils.drawGame(squares);
+    }
+  })
+  .then(drawGameRes => {
+    if (drawGameRes) {
+      res.status(200).send('draw');
+    } else {
+      res.status(200).send('continue');
+    }
+  })
+  .catch(err => {
+    res.status(500).send();
+  })
 });
 
 module.exports = router;

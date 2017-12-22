@@ -1,6 +1,6 @@
 const drawGame = board => {
   const occupiedSquares = board.filter(square => { if (square) return square }).length;
-  return occuppiedSquares > 8 ? true : false;
+  return occupiedSquares > 8 ? true : false;
 };
 
 
@@ -19,9 +19,9 @@ const isWinner = board => {
 
 
 function checkRow(board) {
-  const topRowWinner = (board[0] === board[1] && board[1] === board[2]);
-  const middleRowWinner = (board[3] === board[4] && board[4] === board[5]);
-  const bottomRowWinner = (board[6] === board[7] && board[7] === board[8]);
+  const topRowWinner = (board[0] === board[1] && board[1] === board[2]) && board[0];
+  const middleRowWinner = (board[3] === board[4] && board[4] === board[5]) && board[3];
+  const bottomRowWinner = (board[6] === board[7] && board[7] === board[8]) && board[6];
   if (topRowWinner) {
     return [0, 1, 2];
   }
@@ -36,9 +36,9 @@ function checkRow(board) {
 
 
 function checkColumn(board) {
-  const leftColumn = (board[0] === board[3] && board[3] === board[6]);
-  const middleColumn = (board[1] === board[4] && board[4] === board[7]);
-  const rightColumn = (board[2] === board[5] && board[5] === board[8]);
+  const leftColumn = (board[0] === board[3] && board[3] === board[6]) && board[0];
+  const middleColumn = (board[1] === board[4] && board[4] === board[7]) && board[1];
+  const rightColumn = (board[2] === board[5] && board[5] === board[8]) && board[2];
   if (leftColumn) {
     return [0, 3, 6];
   }
@@ -53,8 +53,8 @@ function checkColumn(board) {
 
 
 function checkDiagonal(board) {
-  const majorDiagonal = (board[2] === board[4] && board[4] === board[6]);
-  const minorDiagonal = (board[0] === board[4] && board[4] === board[8]);
+  const majorDiagonal = (board[2] === board[4] && board[4] === board[6]) && board[2];
+  const minorDiagonal = (board[0] === board[4] && board[4] === board[8]) && board[0];
   if (majorDiagonal) {
     return [2, 4, 6];
   }
