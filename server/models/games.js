@@ -9,14 +9,10 @@ const start = (player_X, player_O) => {
   const playerXOIds = [];
   let playerXId = null;
   let playerOId = null;
-  return db.one(
-    'SELECT player_id from players WHERE username = $1', player_X
-  )
+  return db.one('SELECT player_id from players WHERE username = $1', player_X)
   .then(playerXId => {
     playerXId = playerXId.player_id;
-    return db.one(
-      'SELECT player_id from players WHERE username = $1', player_O
-    )
+    return db.one('SELECT player_id from players WHERE username = $1', player_O)
     .then(playerOId => {
       playerOId = playerOId.player_id;
       return db.one(
@@ -51,8 +47,42 @@ const move = (board, gameId) => {
   );
 };
 
+const declarePlayerXWinner = gameId => {
+  // Get playerId of winning player first
+  return db.one('SELECT playerx from games WHERE game_id = $1', gameId)
+  .then(winningPlayerId => {
+    const { playerx } = winningPlayerId;
+    console.log('playerx winner id', playerx);
+    return db.one(
+      'UPDATE games SET winner = $1 WHERE game_id = $2 RETURNING *',
+      [playerx, gameId]
+    );
+  })
+  .then(() => db.one('UPDATE games SET game_status = $1 WHERE game_id = $2 RETURNING *', ['inactive', gameId]));
+};
+
+const declarePlayerOWinner = gameId => {
+  return db.one('SELECT playero from games WHERE game_id = $1', gameId)
+  .then(winningPlayerId => {
+    const { playero } = winningPlayerId;
+    console.log('playero winner id', playero, 'gameId', gameId);
+    return db.one(
+      'UPDATE games SET winner = $1 WHERE game_id = $2 RETURNING *',
+      [playero, gameId]
+    );
+  })
+  .then(() => db.one('UPDATE games SET game_status = $1 WHERE game_id = $2 RETURNING *', ['inactive', gameId]));
+};
+
+const declareDraw = gameId => {
+  return db.one('UPDATE games SET winner = 0 WHERE game_id = $1 RETURNING *', ['inactive', gameId]);
+};
+
 module.exports = {
   start,
   deactivateGames,
-  move
+  move,
+  declarePlayerXWinner,
+  declarePlayerOWinner,
+  declareDraw
 };

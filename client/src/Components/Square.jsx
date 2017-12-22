@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 const Square = ({ value, index, clickMethod, activePlayer, toggleActivePlayer, gameId }) => {
   const handleClick = (i) => {
     if (!gameId) {
-      window.alert('Awaiting both players to enter details before commencing game...');
+      window.alert('The game is over. Please start a new game.');
     } else if (value) {
       window.alert('Square occupied - please pick another square.');
     } else {
