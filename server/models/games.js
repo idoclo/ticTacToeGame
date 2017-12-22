@@ -75,7 +75,7 @@ const declarePlayerOWinner = gameId => {
 };
 
 const declareDraw = gameId => {
-  return db.one('UPDATE games SET winner = 0 WHERE game_id = $1 RETURNING *', ['inactive', gameId]);
+  return db.one('UPDATE games SET game_status = $1 WHERE game_id = $2 RETURNING *', ['inactive', gameId]);
 };
 
 module.exports = {

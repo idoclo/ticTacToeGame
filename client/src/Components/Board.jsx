@@ -55,7 +55,9 @@ class Board extends Component {
     .then(res => res.json())
     .then(resJSON => {
       console.log('resJSON move', resJSON);
-      this.setState({ gameId: null })
+      if (resJSON === 'draw') {
+        this.setState({ gameId: null })
+      }
     })
     .catch(err => {
       console.error('Not able to make move to server', err);

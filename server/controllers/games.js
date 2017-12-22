@@ -46,6 +46,7 @@ router.post('/move', (req, res) => {
           res.status(200).send(isWinnerRes);
         });
       } else {
+        console.log('drawing game');
         return Game.declarePlayerOWinner(gameId)
         .then(() => {
           res.status(200).send(isWinnerRes);
@@ -56,18 +57,20 @@ router.post('/move', (req, res) => {
       if (utils.drawGame(squares)) {
         Game.declareDraw(gameId)
         .then(() => {
-          res.status(200).send('draw');
+          res.status(200).send(JSON.stringify('draw'));
         });
+      } else {
+        res.status(200).send(JSON.stringify('continue'));
       }
     }
   })
-  .then(drawGameRes => {
-    if (drawGameRes) {
-      res.status(200).send('draw');
-    } else {
-      res.status(200).send('continue');
-    }
-  })
+  // .then(drawGameRes => {
+  //   if (drawGameRes) {
+  //     res.status(200).send('draw');
+  //   } else {
+  //     res.status(200).send('continue');
+  //   }
+  // })
   .catch(err => {
     res.status(500).send();
   })
