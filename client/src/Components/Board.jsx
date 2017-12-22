@@ -55,8 +55,8 @@ class Board extends Component {
     .then(res => res.json())
     .then(resJSON => {
       console.log('resJSON move', resJSON);
-      if (resJSON === 'draw') {
-        this.setState({ gameId: null })
+      if (resJSON === 'draw' || typeof resJSON === 'object') {
+        this.setState({ gameId: null });
       }
     })
     .catch(err => {
