@@ -106,9 +106,9 @@ body {
   background-color: yellow;
 }
 
-.winner-announce-portal {
-  left: '40%';
-  position: 'fixed';
-  top: '50%';
+/*.winner-announce-portal {
+  left: 40%;
+  position: fixed;
+  top: 50%;
   z-index: 1000
-}
+}*/

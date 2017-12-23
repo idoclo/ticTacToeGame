@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Segment, Button, Header, TransitionablePortal } from 'semantic-ui-react';
+import { Segment, Button, Header, TransitionablePortal, Icon } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import Square from './Square';
 
@@ -10,7 +10,8 @@ class Board extends Component {
     this.state = {
       squares: Array(9).fill(null),
       gameId: null,
-      winningThree: []
+      winningThree: [],
+      drawPortalOpen: false
     };
     this.headers = {
       'Accept': 'application/json, text/plain, */*',
@@ -55,16 +56,19 @@ class Board extends Component {
     fetch('/games/move', move)
     .then(res => res.json())
     .then(resJSON => {
-      console.log('resJSON move', resJSON);
+      // console.log('resJSON move', resJSON);
       if (resJSON === 'draw') {
-        this.setState({ gameId: null });
+        this.setState({
+          gameId: null,
+          drawPortalOpen: true
+        });
       }
       if (typeof resJSON === 'object') {
         this.setState({
           gameId: null,
           winningThree: resJSON
         });
-        console.log(this.state.winningThree)
+        // console.log(this.state.winningThree)
       }
     })
     .catch(err => {
@@ -93,7 +97,8 @@ class Board extends Component {
       this.setState({
         squares: board,
         gameId: game_id,
-        winningThree: []
+        winningThree: [],
+        drawPortalOpen: false
       });
     })
     .catch(err => {
@@ -102,7 +107,7 @@ class Board extends Component {
   }
 
   render() {
-    const { squares, winningThree } = this.state;
+    const { squares, winningThree, drawPortalOpen } = this.state;
     const filledSquareRegEx = /X|O/;
     const buttonTextVisible = filledSquareRegEx.test(squares) ? 'Reset' : 'Start';
     const buttonColour = filledSquareRegEx.test(squares) ? 'blue' : 'green';
@@ -217,9 +222,19 @@ class Board extends Component {
           </Button>
         </div>
         <TransitionablePortal open={winningThree.length === 3}>
-          <Segment className="winner-announce-portal">
+          <Segment style={{ left: '40%', position: 'fixed', top: '50%', zIndex: 1000 }}>
             <Header>
+              <Icon name="hand peace" />
               {activePlayer === 'playerX' ? playerO : playerX} wins!
+            </Header>
+            <p>Why not play another round?</p>
+          </Segment>
+        </TransitionablePortal>
+        <TransitionablePortal open={drawPortalOpen}>
+          <Segment style={{ left: '40%', position: 'fixed', top: '50%', zIndex: 1000 }}>
+            <Header>
+              <Icon name="game" />
+              Draw game.
             </Header>
             <p>Why not play another round?</p>
           </Segment>

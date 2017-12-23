@@ -45,7 +45,8 @@ Square.propTypes = {
   clickMethod: PropTypes.func.isRequired,
   activePlayer: PropTypes.string.isRequired,
   toggleActivePlayer: PropTypes.func.isRequired,
-  gameId: PropTypes.number.isRequired
+  gameId: PropTypes.number.isRequired,
+  winner: PropTypes.bool.isRequired
 };
 
 export default Square;

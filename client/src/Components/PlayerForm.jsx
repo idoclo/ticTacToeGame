@@ -8,7 +8,9 @@ class PlayerForm extends Component {
     super(props);
     this.state = {
       name: '',
-      status: null
+      status: null,
+      existingPlayerWarning: false,
+      newPlayerWarning: false
     };
     this.handleExistingOrNew = this.handleExistingOrNew.bind(this);
     this.handleUsernameInput = this.handleUsernameInput.bind(this);
