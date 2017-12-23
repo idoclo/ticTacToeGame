@@ -1,3 +1,4 @@
+'use strict'
 const express = require('express');
 const router = express.Router();
 const Game = require('../models/games.js');
@@ -37,7 +38,7 @@ router.post('/move', (req, res) => {
     return utils.isWinner(squares);
   })
   .then(isWinnerRes => {
-    console.log('isWinnerRes:', isWinnerRes, 'activePlayer', activePlayer, 'gameId', gameId);
+    // console.log('isWinnerRes:', isWinnerRes, 'activePlayer', activePlayer, 'gameId', gameId);
     if (isWinnerRes) {
       // Get activePlayerId and enter that as the winner in the db for the active game.
       if (activePlayer === 'playerX') {
@@ -46,7 +47,7 @@ router.post('/move', (req, res) => {
           res.status(200).send(isWinnerRes);
         });
       } else {
-        console.log('drawing game');
+        // console.log('drawing game');
         return Game.declarePlayerOWinner(gameId)
         .then(() => {
           res.status(200).send(isWinnerRes);

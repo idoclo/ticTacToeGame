@@ -1,3 +1,4 @@
+'use strict'
 const drawGame = board => {
   const occupiedSquares = board.filter(square => { if (square) return square }).length;
   return occupiedSquares > 8 ? true : false;
