@@ -105,3 +105,10 @@ body {
   justify-content: space-around;
   background-color: yellow;
 }
+
+.winner-announce-portal {
+  left: '40%';
+  position: 'fixed';
+  top: '50%';
+  z-index: 1000
+}

@@ -10,8 +10,7 @@ class Board extends Component {
     this.state = {
       squares: Array(9).fill(null),
       gameId: null,
-      winningThree: [],
-      portalOpen: false
+      winningThree: []
     };
     this.headers = {
       'Accept': 'application/json, text/plain, */*',
@@ -19,8 +18,6 @@ class Board extends Component {
     }
     this.handleSquareClick = this.handleSquareClick.bind(this);
     this.handleReset = this.handleReset.bind(this);
-    this.handlePortalOpen = this.handlePortalOpen.bind(this);
-    this.handlePortalClose = this.handlePortalClose.bind(this);
   }
 
   componentWillMount() {
@@ -59,11 +56,14 @@ class Board extends Component {
     .then(res => res.json())
     .then(resJSON => {
       console.log('resJSON move', resJSON);
-      if (resJSON === 'draw' || typeof resJSON === 'object') {
+      if (resJSON === 'draw') {
         this.setState({ gameId: null });
       }
       if (typeof resJSON === 'object') {
-        this.setState({ winningThree: resJSON });
+        this.setState({
+          gameId: null,
+          winningThree: resJSON
+        });
         console.log(this.state.winningThree)
       }
     })
@@ -101,20 +101,12 @@ class Board extends Component {
     });
   }
 
-  handlePortalOpen() {
-    this.setState({ portalOpen: true });
-  }
-
-  handlePortalClose() {
-    this.setState({ portalOpen: false });
-  }
-
   render() {
     const { squares, winningThree } = this.state;
     const filledSquareRegEx = /X|O/;
     const buttonTextVisible = filledSquareRegEx.test(squares) ? 'Reset' : 'Start';
     const buttonColour = filledSquareRegEx.test(squares) ? 'blue' : 'green';
-    const { activePlayer, toggleActivePlayer } = this.props;
+    const { playerX, playerO, activePlayer, toggleActivePlayer } = this.props;
 
     return (
       <Segment id="board-segment">
@@ -225,9 +217,9 @@ class Board extends Component {
           </Button>
         </div>
         <TransitionablePortal open={winningThree.length === 3}>
-          <Segment style={{ left: '40%', position: 'fixed', top: '50%', zIndex: 1000 }}>
+          <Segment className="winner-announce-portal">
             <Header>
-              {this.props[activePlayer]} wins!
+              {activePlayer === 'playerX' ? playerO : playerX} wins!
             </Header>
             <p>Why not play another round?</p>
           </Segment>

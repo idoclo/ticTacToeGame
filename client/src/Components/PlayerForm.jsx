@@ -37,9 +37,12 @@ class PlayerForm extends Component {
 
     if (status === 'existing') {
       fetch(`/players/${name}`, { method: 'GET' })
-      .then(res =>
-        res.json()
-      )
+      .then(res => {
+        if (res.status === 400) {
+          throw new Error('That usename does not exist in the db.');
+        }
+        return res.json()
+      })
       .then(resJSON => {
         // console.log('Existing player details retrieved from db:', resJSON);
         updatePlayer(resJSON.username);
@@ -49,6 +52,7 @@ class PlayerForm extends Component {
       })
       .catch(err => {
         console.error(`Error saving existing player: ${err}`);
+        window.alert('That username does not exist in the db.');
       });
     }
 

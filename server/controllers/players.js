@@ -13,7 +13,7 @@ router.get('/:username', (req, res) => {
   })
   .catch(err => {
     console.error('Username does not exist', err);
-    res.status(400).send('Username does not exist');
+    res.status(400).send(JSON.stringify('Username does not exist'));
   });
 });
 
