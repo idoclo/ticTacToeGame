@@ -3,7 +3,7 @@ import { Icon } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
 
-const Square = ({ value, index, clickMethod, activePlayer, toggleActivePlayer, gameId }) => {
+const Square = ({ value, index, clickMethod, activePlayer, toggleActivePlayer, gameId, winner}) => {
   const handleClick = (i) => {
     if (!gameId) {
       window.alert('The game is over. Please start a new game.');
@@ -29,7 +29,7 @@ const Square = ({ value, index, clickMethod, activePlayer, toggleActivePlayer, g
 
   return (
     <div
-      className="square"
+      className={winner ? "winning-square" : "square"}
       role="presentation"
       onClick={() => handleClick(index)}
     >

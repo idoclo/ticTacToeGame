@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Segment, Button } from 'semantic-ui-react';
+import { Segment, Button, Header, TransitionablePortal } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import Square from './Square';
 
@@ -9,7 +9,9 @@ class Board extends Component {
     super(props);
     this.state = {
       squares: Array(9).fill(null),
-      gameId: null
+      gameId: null,
+      winningThree: [],
+      portalOpen: false
     };
     this.headers = {
       'Accept': 'application/json, text/plain, */*',
@@ -17,6 +19,8 @@ class Board extends Component {
     }
     this.handleSquareClick = this.handleSquareClick.bind(this);
     this.handleReset = this.handleReset.bind(this);
+    this.handlePortalOpen = this.handlePortalOpen.bind(this);
+    this.handlePortalClose = this.handlePortalClose.bind(this);
   }
 
   componentWillMount() {
@@ -58,6 +62,10 @@ class Board extends Component {
       if (resJSON === 'draw' || typeof resJSON === 'object') {
         this.setState({ gameId: null });
       }
+      if (typeof resJSON === 'object') {
+        this.setState({ winningThree: resJSON });
+        console.log(this.state.winningThree)
+      }
     })
     .catch(err => {
       console.error('Not able to make move to server', err);
@@ -84,7 +92,8 @@ class Board extends Component {
       const { game_id, board } = resJSON;
       this.setState({
         squares: board,
-        gameId: game_id
+        gameId: game_id,
+        winningThree: []
       });
     })
     .catch(err => {
@@ -92,8 +101,16 @@ class Board extends Component {
     });
   }
 
+  handlePortalOpen() {
+    this.setState({ portalOpen: true });
+  }
+
+  handlePortalClose() {
+    this.setState({ portalOpen: false });
+  }
+
   render() {
-    const { squares } = this.state;
+    const { squares, winningThree } = this.state;
     const filledSquareRegEx = /X|O/;
     const buttonTextVisible = filledSquareRegEx.test(squares) ? 'Reset' : 'Start';
     const buttonColour = filledSquareRegEx.test(squares) ? 'blue' : 'green';
@@ -110,6 +127,7 @@ class Board extends Component {
               activePlayer={activePlayer}
               toggleActivePlayer={toggleActivePlayer}
               gameId={this.state.gameId}
+              winner={winningThree.indexOf(0) > -1}
             />
             <div className="top-column" />
             <Square
@@ -119,6 +137,7 @@ class Board extends Component {
               activePlayer={activePlayer}
               toggleActivePlayer={toggleActivePlayer}
               gameId={this.state.gameId}
+              winner={winningThree.indexOf(1) > -1}
             />
             <div className="top-column" />
             <Square
@@ -128,6 +147,7 @@ class Board extends Component {
               activePlayer={activePlayer}
               toggleActivePlayer={toggleActivePlayer}
               gameId={this.state.gameId}
+              winner={winningThree.indexOf(2) > -1}
             />
           </div>
           <div className="board-row" />
@@ -139,6 +159,7 @@ class Board extends Component {
               activePlayer={activePlayer}
               toggleActivePlayer={toggleActivePlayer}
               gameId={this.state.gameId}
+              winner={winningThree.indexOf(3) > -1}
             />
             <div className="middle-column" />
             <Square
@@ -148,6 +169,7 @@ class Board extends Component {
               activePlayer={activePlayer}
               toggleActivePlayer={toggleActivePlayer}
               gameId={this.state.gameId}
+              winner={winningThree.indexOf(4) > -1}
             />
             <div className="middle-column" />
             <Square
@@ -157,6 +179,7 @@ class Board extends Component {
               activePlayer={activePlayer}
               toggleActivePlayer={toggleActivePlayer}
               gameId={this.state.gameId}
+              winner={winningThree.indexOf(5) > -1}
             />
           </div>
           <div className="board-row" />
@@ -168,6 +191,7 @@ class Board extends Component {
               activePlayer={activePlayer}
               toggleActivePlayer={toggleActivePlayer}
               gameId={this.state.gameId}
+              winner={winningThree.indexOf(6) > -1}
             />
             <div className="bottom-column" />
             <Square
@@ -177,6 +201,7 @@ class Board extends Component {
               activePlayer={activePlayer}
               toggleActivePlayer={toggleActivePlayer}
               gameId={this.state.gameId}
+              winner={winningThree.indexOf(7) > -1}
             />
             <div className="bottom-column" />
             <Square
@@ -186,6 +211,7 @@ class Board extends Component {
               activePlayer={activePlayer}
               toggleActivePlayer={toggleActivePlayer}
               gameId={this.state.gameId}
+              winner={winningThree.indexOf(8) > -1}
             />
           </div>
         </div>
@@ -198,6 +224,14 @@ class Board extends Component {
             {buttonTextVisible}
           </Button>
         </div>
+        <TransitionablePortal open={winningThree.length === 3}>
+          <Segment style={{ left: '40%', position: 'fixed', top: '50%', zIndex: 1000 }}>
+            <Header>
+              {this.props[activePlayer]} wins!
+            </Header>
+            <p>Why not play another round?</p>
+          </Segment>
+        </TransitionablePortal>
       </Segment>
     );
   }
