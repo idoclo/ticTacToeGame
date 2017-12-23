@@ -93,7 +93,7 @@ class Board extends Component {
     fetch(`/games/${value}`, myInit)
     .then(res => res.json())
     .then(resJSON => {
-      const { game_id, board } = resJSON;
+      const { game_id, board } = resJSON; // eslint-disable-line camelcase
       this.setState({
         squares: board,
         gameId: game_id,
