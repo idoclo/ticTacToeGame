@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Header, Segment, Modal, Button, Icon } from 'semantic-ui-react';
+import { Header, Segment, Modal, Button, Icon, Grid } from 'semantic-ui-react';
 import GameInfo from './GameInfo';
 import Board from './Board';
 import PlayerForm from './PlayerForm';
+import Scoreboard from './Scoreboard';
 
 
 class App extends Component {
@@ -129,11 +130,18 @@ class App extends Component {
           </Modal>
         </Segment>
         <Segment id="info-and-scoreboard">
-          <GameInfo
-            playerX={playerX}
-            playerO={playerO}
-            activePlayer={activePlayer}
-          />
+          <Grid columns={2} divided>
+            <Grid.Column>
+              <GameInfo
+                playerX={playerX}
+                playerO={playerO}
+                activePlayer={activePlayer}
+              />
+            </Grid.Column>
+            <Grid.Column>
+              <Scoreboard />
+            </Grid.Column>
+          </Grid>
         </Segment>
         {board}
       </div>
