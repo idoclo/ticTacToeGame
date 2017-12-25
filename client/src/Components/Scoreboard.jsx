@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table } from 'semantic-ui-react';
+import { Header, Table } from 'semantic-ui-react';
 
 
 class Scoreboard extends Component {
@@ -27,22 +27,27 @@ class Scoreboard extends Component {
   render() {
     const { topThreePlayers } = this.state;
     return (
-      <Table celled>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell>Player</Table.HeaderCell>
-            <Table.HeaderCell>Score</Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
-        <Table.Body>
-          {topThreePlayers.map(player => (
+      <div>
+        <Header size="small">
+          Top three players
+        </Header>
+        <Table celled>
+          <Table.Header>
             <Table.Row>
-              <Table.Cell>{player.name}</Table.Cell>
-              <Table.Cell>{player.score}</Table.Cell>
+              <Table.HeaderCell>Player</Table.HeaderCell>
+              <Table.HeaderCell>Score</Table.HeaderCell>
             </Table.Row>
-          ))}
-        </Table.Body>
-      </Table>
+          </Table.Header>
+          <Table.Body>
+            {topThreePlayers.map(player => (
+              <Table.Row>
+                <Table.Cell>{player.name}</Table.Cell>
+                <Table.Cell>{player.score}</Table.Cell>
+              </Table.Row>
+            ))}
+          </Table.Body>
+        </Table>
+      </div>
     );
   }
 };

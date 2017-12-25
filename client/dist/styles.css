@@ -15,13 +15,17 @@ body {
   margin-top: 1%;
 }
 
-/*#game-info-segment {
-  display: flex;
-  justify-content: center;
-}*/
-
 .player-form {
   margin: 10%;
+  text-align: center;
+}
+
+.player-form-item {
+  padding-bottom: 10%;
+}
+
+#player-form-input {
+  justify-content: left;
 }
 
 .game-info-row {
@@ -41,7 +45,7 @@ body {
   justify-content: center;
   width: 50%;
   align-items: center;
-  margin-bottom: 5%;
+  margin-bottom: 3%;
 }
 
 #player-initiation-segment {
@@ -105,10 +109,3 @@ body {
   justify-content: space-around;
   background-color: yellow;
 }
-
-/*.winner-announce-portal {
-  left: 40%;
-  position: fixed;
-  top: 50%;
-  z-index: 1000
-}*/

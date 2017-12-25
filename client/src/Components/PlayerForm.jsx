@@ -98,7 +98,10 @@ class PlayerForm extends Component {
     const iconName = playerSymbol === 'X' ? 'remove' : 'radio';
     return (
       <div className="player-form">
-        <Header size="medium">
+        <Header
+          size="medium"
+          className="player-form-item"
+        >
           Please enter your details
           <Header.Subheader>
             You will be player <Icon name={iconName}/>
@@ -106,7 +109,7 @@ class PlayerForm extends Component {
         </Header>
 
         <Form>
-          <Button.Group>
+          <Button.Group className="player-form-item">
             <Button
               color="brown"
               value="existing"
@@ -125,11 +128,15 @@ class PlayerForm extends Component {
           </Button.Group>
           <Form.Input
             label="Username"
-            placeholder="Username"
+            placeholder="Enter username here ..."
             onChange={this.handleUsernameInput}
+            className="player-form-item" id="player-form-input"
           />
         </Form>
-        <Button onClick={this.submitUsername}>
+        <Button
+          onClick={this.submitUsername}
+          className="player-form-item"
+        >
           Enter
         </Button>
         </div>

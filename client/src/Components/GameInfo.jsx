@@ -8,10 +8,13 @@ const GameInfo = ({ playerX, playerO, activePlayer }) => {
   const playerOTurn = activePlayer === 'playerO';
   return (
     <div id="game-info-segment">
+      <Header size="small">
+        Current game
+      </Header>
       <Table
-        basic='very'
+        // basic='very'
         celled
-        collapsing
+        // collapsing
       >
         <Table.Header>
           <Table.Row className="game-info-row">
@@ -31,7 +34,7 @@ const GameInfo = ({ playerX, playerO, activePlayer }) => {
                   size='mini'
                 />
                 <Header.Content>
-                    {playerX}
+                  {playerX}
                 </Header.Content>
               </Header>
             </Table.Cell>
@@ -51,7 +54,7 @@ const GameInfo = ({ playerX, playerO, activePlayer }) => {
                   size='mini'
                 />
                 <Header.Content>
-                    {playerO}
+                  {playerO}
                 </Header.Content>
               </Header>
             </Table.Cell>
