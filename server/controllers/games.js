@@ -9,7 +9,6 @@ router.post('/reset', (req, res) => {
   const { value, playerX, playerO } = req.body;
   // console.log('req.body from client:', req.body, value, playerX, playerO);
   Game.deactivateGames()
-
   .then(() => 
     Game.start(playerX, playerO)
   )
@@ -65,13 +64,6 @@ router.post('/move', (req, res) => {
       }
     }
   })
-  // .then(drawGameRes => {
-  //   if (drawGameRes) {
-  //     res.status(200).send('draw');
-  //   } else {
-  //     res.status(200).send('continue');
-  //   }
-  // })
   .catch(err => {
     res.status(500).send();
   })

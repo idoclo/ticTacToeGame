@@ -5,6 +5,7 @@ const PORT = process.env.PORT || 5000;
 const path = require('path');
 const GamesController = require('./controllers/games.js');
 const PlayersController = require('./controllers/players.js');
+const ScoresController = require('./controllers/scores.js');
 
 const db = require('../db/index.js');
 
@@ -16,6 +17,7 @@ app.use(express.static(`${__dirname}/../client/dist`));
 
 app.use('/games', GamesController);
 app.use('/players', PlayersController);
+app.use('/scores', ScoresController);
 
 app.use('*', (req, res) => {
   res.status(404).send();
