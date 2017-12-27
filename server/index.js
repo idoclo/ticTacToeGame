@@ -17,6 +17,11 @@ app.use(express.static(`${__dirname}/../client/dist`));
 app.use('/games', GamesController);
 app.use('/players', PlayersController);
 
+
+const ScoreCalculator = require('./workers/scoreCalculator.js');
+ScoreCalculator.start();
+
+
 app.use('*', (req, res) => {
   res.status(404).send();
 });
