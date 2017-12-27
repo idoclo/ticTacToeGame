@@ -5,10 +5,15 @@ import { Header, Table } from 'semantic-ui-react';
 class Scoreboard extends Component {
   constructor() {
     super();
-    this.state = { topThreePlayers: [] }
+    this.state = { topThreePlayers: [] };
+    this.updateScoreboard = this.updateScoreboard.bind(this);
   }
 
   componentWillMount() {
+    this.updateScoreboard();
+  }
+
+  updateScoreboard() {
     fetch('/players/', { method: 'GET' })
     .then(playersInfo => playersInfo.json())
     .then(resJSON => {
@@ -56,15 +61,11 @@ class Scoreboard extends Component {
     });
   }
 
-  componentDidMount() {
-    const { topThreePlayers } = this.state;
-    console.log('playa', topThreePlayers);
-  }
 
   render() {
     const { topThreePlayers } = this.state;
     return (
-      <div>
+      <div onClick={this.updateScoreboard}>
         <Header size="small">
           Top three players
         </Header>
@@ -77,7 +78,7 @@ class Scoreboard extends Component {
           </Table.Header>
           <Table.Body>
             {topThreePlayers.map(player => (
-              <Table.Row>
+              <Table.Row key={player.name}>
                 <Table.Cell>{player.name}</Table.Cell>
                 <Table.Cell>{player.score}</Table.Cell>
               </Table.Row>
