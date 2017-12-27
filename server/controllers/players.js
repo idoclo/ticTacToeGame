@@ -7,7 +7,7 @@ const Player = require('../models/players.js');
 router.get('/', (req, res) => {
   Player.getAll()
   .then(scoresArray => {
-    res.status(200).send(scoresArray);
+    res.status(200).send(JSON.stringify(scoresArray));
   })
   .catch(err => {
     res.status(500).send('Bad get all');
@@ -48,37 +48,6 @@ router.post('/new', (req, res) => {
     });
   });
 });
-
-
-// router.post('/scores', (req, res) => {
-//   Player.getWinningPlayers()
-//   .then(winningPlayers => {
-//     const winnerFrequency = new Map();
-//     winningPlayers.forEach(winningPlayer => {
-//       if (winnerFrequency.has(winningPlayer)) {
-//         const frequency = winnerFrequency.get(winningPlayer);
-//         winnerFrequency.set(winningPlayer, frequency + 1);
-//       } else {
-//         winnerFrequency.set(winningPlayer, 1);
-//       }
-//     });
-//     return winnerFrequency;
-//   })
-//   .then(winnerFrequencyMap => {
-//     winnerFrequencyMap.forEach((value, key, map) => {
-//       Player.calculatePlayerScore(key, value);
-//     })
-//   })
-//   .then(() => {
-//     return Player.getAll();
-//   })
-//   .then(playersWithUpdatedScores => {
-//     res.status(201).send(playersWithUpdatedScores);
-//   })
-//   .catch(err => {
-//     res.status(400).send('Bad bad bad');
-//   });
-// });
 
 
 module.exports = router;

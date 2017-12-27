@@ -9,13 +9,50 @@ class Scoreboard extends Component {
   }
 
   componentWillMount() {
-    console.log('fetch function goes here to get top three scoring players');
-    this.setState({ topThreePlayers:
-      [
-        { name: 'Charlie', score: 100 },
-        { name: 'Mandy', score: 60 },
-        { name: 'Scott', score: 25 }
-      ]
+    fetch('/players/', { method: 'GET' })
+    .then(playersInfo => playersInfo.json())
+    .then(resJSON => {
+      console.log('info on players', resJSON);
+      const playersInfo = resJSON.slice();
+      let first;
+      let second;
+      let third;
+      let tempIndex;
+      // First place
+      playersInfo.forEach((player, index) => {
+        if (!first || player.score > first.score) {
+          first = player;
+          tempIndex = index;
+        }
+      });
+      // Slice out first player
+      playersInfo.splice(tempIndex, 1);
+      // Second place
+      playersInfo.forEach((player, index) => {
+        if (!second || player.score > second.score) {
+          second = player;
+          tempIndex = index;
+        }
+      });
+      // Slice out second player
+      playersInfo.splice(tempIndex, 1);
+      // Third place
+      playersInfo.forEach((player, index) => {
+        if (!third || player.score > third.score) {
+          third = player;
+          tempIndex = index;
+        }
+      });
+
+      this.setState({ topThreePlayers: [
+          { name: first.username, score: first.score },
+          { name: second.username, score: second.score },
+          { name: third.username, score: third.score }
+        ]
+      })
+    })
+    .catch(err => {
+      console.error('Unable to get all players info', err);
     });
   }
 
