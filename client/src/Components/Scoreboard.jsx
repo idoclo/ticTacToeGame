@@ -21,7 +21,6 @@ class Scoreboard extends Component {
     fetch('/players/', { method: 'GET' })
     .then(playersInfo => playersInfo.json())
     .then(resJSON => {
-      console.log('info on players', resJSON);
       const playersInfo = resJSON.slice();
       let first;
       let second;
@@ -61,7 +60,7 @@ class Scoreboard extends Component {
       })
     })
     .catch(err => {
-      console.error('Unable to get all players info', err);
+      console.error('Unable to get all players info', err); // eslint-disable-line no-console
     });
   }
 

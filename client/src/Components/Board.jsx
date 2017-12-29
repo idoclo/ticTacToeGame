@@ -31,18 +31,9 @@ class Board extends Component {
   handleSquareClick(index, piece) {
     const { activePlayer, toggleGameOn } = this.props;
     const { squares, gameId } = this.state;
-
-    // if (!playerX.length) {
-    //   // window.alert('Need player X');
-    //   this.setState({ missingPlayerPortalOpen: true });
-    // } else if (!playerO.length) {
-    //   // window.alert('Need player O');
-    //   this.setState({ missingPlayerPortalOpen: true });
-    // } else {
-      squares[index] = piece;
-      this.setState({ squares });
-    // }
-    // fetch function to send updated board to server along with gameId
+    squares[index] = piece;
+    this.setState({ squares });
+    
     const payload = {
       squares,
       gameId,
@@ -58,7 +49,6 @@ class Board extends Component {
     fetch('/games/move', move)
     .then(res => res.json())
     .then(resJSON => {
-      // console.log('resJSON move', resJSON);
       if (resJSON === 'draw') {
         toggleGameOn(false);
         this.setState({
@@ -72,7 +62,6 @@ class Board extends Component {
           gameId: null,
           winningThree: resJSON
         });
-        // console.log(this.state.winningThree)
       }
     })
     .catch(err => {
@@ -227,7 +216,7 @@ class Board extends Component {
           </Button>
         </div>
         <TransitionablePortal open={winningThree.length === 3}>
-          <Segment style={{ left: '42%', position: 'fixed', top: '40%', zIndex: 1000 }}>
+          <Segment style={{ left: '42.5%', position: 'fixed', top: '40%', zIndex: 1000 }}>
             <Header>
               <Icon name="hand peace" />
               {activePlayer === 'playerX' ? playerO : playerX} wins!
@@ -236,7 +225,7 @@ class Board extends Component {
           </Segment>
         </TransitionablePortal>
         <TransitionablePortal open={drawPortalOpen}>
-          <Segment style={{ left: '42%', position: 'fixed', top: '40%', zIndex: 1000 }}>
+          <Segment style={{ left: '42.5%', position: 'fixed', top: '40%', zIndex: 1000 }}>
             <Header>
               <Icon name="game" />
               Draw game.
