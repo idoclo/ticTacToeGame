@@ -13,6 +13,10 @@ class Scoreboard extends Component {
     this.updateScoreboard();
   }
 
+  componentWillReceiveProps() {
+    this.updateScoreboard();
+  }
+
   updateScoreboard() {
     fetch('/players/', { method: 'GET' })
     .then(playersInfo => playersInfo.json())
@@ -65,7 +69,7 @@ class Scoreboard extends Component {
   render() {
     const { topThreePlayers } = this.state;
     return (
-      <div onClick={this.updateScoreboard}>
+      <div>
         <Header size="small">
           Top three players
         </Header>
@@ -89,5 +93,6 @@ class Scoreboard extends Component {
     );
   }
 };
+
 
 export default Scoreboard;

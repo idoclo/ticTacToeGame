@@ -29,17 +29,19 @@ class Board extends Component {
   }
 
   handleSquareClick(index, piece) {
-    const { playerX, playerO, activePlayer } = this.props;
+    const { activePlayer, toggleGameOn } = this.props;
     const { squares, gameId } = this.state;
 
-    if (!playerX.length) {
-      window.alert('Need player X');
-    } else if (!playerO.length) {
-      window.alert('Need player O');
-    } else {
+    // if (!playerX.length) {
+    //   // window.alert('Need player X');
+    //   this.setState({ missingPlayerPortalOpen: true });
+    // } else if (!playerO.length) {
+    //   // window.alert('Need player O');
+    //   this.setState({ missingPlayerPortalOpen: true });
+    // } else {
       squares[index] = piece;
       this.setState({ squares });
-    }
+    // }
     // fetch function to send updated board to server along with gameId
     const payload = {
       squares,
@@ -58,12 +60,14 @@ class Board extends Component {
     .then(resJSON => {
       // console.log('resJSON move', resJSON);
       if (resJSON === 'draw') {
+        toggleGameOn(false);
         this.setState({
           gameId: null,
           drawPortalOpen: true
         });
       }
       if (typeof resJSON === 'object') {
+        toggleGameOn(false);
         this.setState({
           gameId: null,
           winningThree: resJSON
@@ -77,7 +81,7 @@ class Board extends Component {
   }
 
   handleReset(event, { value }) {
-    const { playerX, playerO } = this.props;
+    const { playerX, playerO, toggleGameOn } = this.props;
     const payload = {
       value,
       playerX,
@@ -94,6 +98,7 @@ class Board extends Component {
     .then(res => res.json())
     .then(resJSON => {
       const { game_id, board } = resJSON; // eslint-disable-line camelcase
+      toggleGameOn(true);
       this.setState({
         squares: board,
         gameId: game_id,
@@ -222,7 +227,7 @@ class Board extends Component {
           </Button>
         </div>
         <TransitionablePortal open={winningThree.length === 3}>
-          <Segment style={{ left: '40%', position: 'fixed', top: '50%', zIndex: 1000 }}>
+          <Segment style={{ left: '42%', position: 'fixed', top: '40%', zIndex: 1000 }}>
             <Header>
               <Icon name="hand peace" />
               {activePlayer === 'playerX' ? playerO : playerX} wins!
@@ -231,7 +236,7 @@ class Board extends Component {
           </Segment>
         </TransitionablePortal>
         <TransitionablePortal open={drawPortalOpen}>
-          <Segment style={{ left: '40%', position: 'fixed', top: '50%', zIndex: 1000 }}>
+          <Segment style={{ left: '42%', position: 'fixed', top: '40%', zIndex: 1000 }}>
             <Header>
               <Icon name="game" />
               Draw game.
@@ -249,7 +254,8 @@ Board.propTypes = {
   playerX: PropTypes.string.isRequired,
   playerO: PropTypes.string.isRequired,
   activePlayer: PropTypes.string.isRequired,
-  toggleActivePlayer: PropTypes.func.isRequired
+  toggleActivePlayer: PropTypes.func.isRequired,
+  toggleGameOn: PropTypes.bool.isRequired
 };
 
 export default Board;

@@ -14,7 +14,8 @@ class App extends Component {
       playerO: '',
       activePlayer: 'playerX',
       modalOpenX: false,
-      modalOpenO: false
+      modalOpenO: false,
+      gameOn: false
     };
     this.updatePlayerX = this.updatePlayerX.bind(this);
     this.updatePlayerO = this.updatePlayerO.bind(this);
@@ -23,6 +24,7 @@ class App extends Component {
     this.handleModalCloseX = this.handleModalCloseX.bind(this);
     this.handleModalOpenO = this.handleModalOpenO.bind(this);
     this.handleModalCloseO = this.handleModalCloseO.bind(this);
+    this.toggleGameOn = this.toggleGameOn.bind(this);
   }
 
 
@@ -54,14 +56,19 @@ class App extends Component {
     this.setState({ modalOpenO: false });
   }
 
+  toggleGameOn(boolean) {
+    this.setState({ gameOn: boolean });
+  }
+
   render() {
-    const { playerX, playerO, activePlayer, modalOpenX, modalOpenO } = this.state;
+    const { playerX, playerO, activePlayer, modalOpenX, modalOpenO, gameOn } = this.state;
     const board = (playerX.length && playerO.length) ?
       <Board
         playerX={playerX}
         playerO={playerO}
         activePlayer={activePlayer}
         toggleActivePlayer={this.toggleActivePlayer}
+        toggleGameOn={this.toggleGameOn}
       /> :
       null;
 
@@ -139,7 +146,7 @@ class App extends Component {
               />
             </Grid.Column>
             <Grid.Column>
-              <Scoreboard />
+              <Scoreboard gameOn={gameOn}/>
             </Grid.Column>
           </Grid>
         </Segment>
