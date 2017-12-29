@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Segment, Button, Header, Portal, Icon } from 'semantic-ui-react';
+import { Segment, Button, Header, TransitionablePortal, Icon } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import Square from './Square';
 
@@ -226,7 +226,7 @@ class Board extends Component {
             {buttonTextVisible}
           </Button>
         </div>
-        <Portal open={winningThree.length === 3}>
+        <TransitionablePortal open={winningThree.length === 3}>
           <Segment style={{ left: '42%', position: 'fixed', top: '40%', zIndex: 1000 }}>
             <Header>
               <Icon name="hand peace" />
@@ -234,8 +234,8 @@ class Board extends Component {
             </Header>
             <p>Why not play another round?</p>
           </Segment>
-        </Portal>
-        <Portal open={drawPortalOpen}>
+        </TransitionablePortal>
+        <TransitionablePortal open={drawPortalOpen}>
           <Segment style={{ left: '42%', position: 'fixed', top: '40%', zIndex: 1000 }}>
             <Header>
               <Icon name="game" />
@@ -243,7 +243,7 @@ class Board extends Component {
             </Header>
             <p>Why not play another round?</p>
           </Segment>
-        </Portal>
+        </TransitionablePortal>
       </Segment>
     );
   }
