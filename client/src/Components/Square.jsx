@@ -10,7 +10,7 @@ class Square extends Component {
       poorMovePortalOpen: false
     };
     this.handleClick = this.handleClick.bind(this);
-    this.handlePoortMovePortalClose = this.handlePoortMovePortalClose.bind(this);
+    this.handlePoorMovePortalClose = this.handlePoorMovePortalClose.bind(this);
   }
 
   handleClick(i) {
@@ -26,7 +26,7 @@ class Square extends Component {
     }
   }
 
-  handlePoortMovePortalClose() {
+  handlePoorMovePortalClose() {
     this.setState({ poorMovePortalOpen: false });
   }
 
@@ -51,11 +51,11 @@ class Square extends Component {
         {icon}
         <Portal
           open={poorMovePortalOpen}
-          onClose={this.handlePoortMovePortalClose}
+          onClose={this.handlePoorMovePortalClose}
         >
           <Segment style={{ left: '35%', position: 'fixed', top: '40%', zIndex: 1000 }}>
-            <Header style={{color: 'red'}}>
-              <Icon name="ban"/>
+            <Header>
+              <Icon name="ban" style={{color: 'red'}}/>
               Square occupied - please pick another square.
             </Header>
           </Segment>

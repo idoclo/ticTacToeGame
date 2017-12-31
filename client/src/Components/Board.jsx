@@ -33,7 +33,7 @@ class Board extends Component {
     const { squares, gameId } = this.state;
     squares[index] = piece;
     this.setState({ squares });
-    
+
     const payload = {
       squares,
       gameId,
@@ -216,21 +216,25 @@ class Board extends Component {
           </Button>
         </div>
         <TransitionablePortal open={winningThree.length === 3}>
-          <Segment style={{ left: '42.5%', position: 'fixed', top: '40%', zIndex: 1000 }}>
+          <Segment style={{ left: '42.5%', position: 'fixed', top: '40%', zIndex: 1000, textAlign: 'center' }}>
             <Header>
               <Icon name="hand peace" />
               {activePlayer === 'playerX' ? playerO : playerX} wins!
             </Header>
+            <div>
             <p>Why not play another round?</p>
+            <p>Hit the reset button to play another game.</p>
+            </div>
           </Segment>
         </TransitionablePortal>
         <TransitionablePortal open={drawPortalOpen}>
-          <Segment style={{ left: '42.5%', position: 'fixed', top: '40%', zIndex: 1000 }}>
+          <Segment style={{ left: '42.5%', position: 'fixed', top: '40%', zIndex: 1000, textAlign: 'center' }}>
             <Header>
               <Icon name="game" />
               Draw game.
             </Header>
             <p>Why not play another round?</p>
+            <p>Hit the reset button to play another game.</p>
           </Segment>
         </TransitionablePortal>
       </Segment>

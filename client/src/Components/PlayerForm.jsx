@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Header, Icon, Form, Button } from 'semantic-ui-react';
+import { Header, Icon, Form, Button, Portal, Segment } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
 
@@ -9,12 +9,16 @@ class PlayerForm extends Component {
     this.state = {
       name: '',
       status: null,
-      existingPlayerWarning: false,
-      newPlayerWarning: false
+      noStatusPortalOpen: false,
+      existingPlayerPortalOpen: false,
+      newPlayerPortalOpen: false
     };
     this.handleExistingOrNew = this.handleExistingOrNew.bind(this);
     this.handleUsernameInput = this.handleUsernameInput.bind(this);
     this.submitUsername = this.submitUsername.bind(this);
+    this.handleExistingPlayerPortalClose = this.handleExistingPlayerPortalClose.bind(this);
+    this.handleNoStatusPortalClose = this.handleNoStatusPortalClose.bind(this);
+    this.handleNewPlayerPortalClose = this.handleNewPlayerPortalClose.bind(this);
   }
 
   handleExistingOrNew(event, { value }) {
@@ -25,11 +29,26 @@ class PlayerForm extends Component {
     this.setState({ name: value });
   }
 
+  handleExistingPlayerPortalClose() {
+    this.setState({ existingPlayerPortalOpen: false });
+  }
+
+  handleNoStatusPortalClose() {
+    console.log('handleNoStatusPortalClose invoked BEFORE', this.state.noStatusPortalOpen);
+    this.setState({ noStatusPortalOpen: false });
+    console.log('handleNoStatusPortalClose invoked AFTER', this.state.noStatusPortalOpen);
+  }
+
+  handleNewPlayerPortalClose() {
+    this.setState({ newPlayerPortalOpen: false });
+  }
+
   submitUsername() {
     const { name, status } = this.state;
     const { playerSymbol, handleModalClose, updatePlayer } = this.props;
     if (!status) {
-      window.alert('Need to select existing or new player mate!');
+      this.setState({ noStatusPortalOpen: !this.state.noStatusPortalOpen });
+      // window.alert('Need to select existing or new player mate!');
     }
 
     const myHeaders = {
@@ -46,15 +65,14 @@ class PlayerForm extends Component {
         return res.json()
       })
       .then(resJSON => {
-        // console.log('Existing player details retrieved from db:', resJSON);
         updatePlayer(resJSON.username);
       })
       .then(() => {
         handleModalClose();
       })
       .catch(err => {
-        console.error(`Error saving existing player: ${err}`);
-        window.alert('That username does not exist in the db.');
+        this.setState({ newPlayerPortalOpen: true });
+        console.error(`Error saving existing player: ${err}`); // eslint-disable-line no-console
       });
     }
 
@@ -64,7 +82,6 @@ class PlayerForm extends Component {
         playerStatus: status,
         playerSymbol
       };
-      // console.log('payload to submit', payload);
       const myInit = {
         method: status === 'existing' ? 'GET' : 'POST',
         headers: myHeaders,
@@ -80,7 +97,6 @@ class PlayerForm extends Component {
         return res.json()
       })
       .then(resJSON => {
-        // console.log('Player username inserted/exists in db!', resJSON);
         if (resJSON)
         updatePlayer(resJSON.username);
       })
@@ -88,13 +104,15 @@ class PlayerForm extends Component {
         handleModalClose();
       })
       .catch(err => {
-        window.alert('That username already exists in the db.', err);
+        this.setState({ existingPlayerPortalOpen: true });
+        console.error(`That username already exists in the db: ${err}`); // eslint-disable-line no-console
       });
     }
   }
 
   render() {
     const { playerSymbol } = this.props;
+    const { existingPlayerPortalOpen, noStatusPortalOpen, newPlayerPortalOpen } = this.state;
     const iconName = playerSymbol === 'X' ? 'remove' : 'radio';
     return (
       <div className="player-form">
@@ -139,7 +157,43 @@ class PlayerForm extends Component {
         >
           Enter
         </Button>
-        </div>
+        <Portal
+          open={existingPlayerPortalOpen}
+          onClose={this.handleExistingPlayerPortalClose}
+        >
+          <Segment style={{ left: '35%', position: 'fixed', top: '40%', zIndex: 1000, textAlign:'center' }}>
+            <Header>
+              <Icon name="warning" style={{color: 'red'}}/>
+              That username already exists in the database.
+            </Header>
+            <p>Please select another username.</p>
+          </Segment>
+        </Portal>
+        <Portal
+          open={noStatusPortalOpen}
+          onClose={this.handleNoStatusPortalClose}
+        >
+          <Segment style={{ left: '35%', position: 'fixed', top: '40%', zIndex: 1000, textAlign:'center' }}>
+            <Header>
+              <Icon name="warning" style={{color: 'red'}}/>
+              Need to select existing or new player mate!
+            </Header>
+            <p>Please press one of the buttons to select.</p>
+          </Segment>
+        </Portal>
+        <Portal
+          open={newPlayerPortalOpen}
+          onClose={this.handleNewPlayerPortalClose}
+        >
+          <Segment style={{ left: '35%', position: 'fixed', top: '40%', zIndex: 1000, textAlign:'center' }}>
+            <Header>
+              <Icon name="warning" style={{color: 'red'}}/>
+              That username does not exist in the database.
+            </Header>
+            <p>Please either select the New option or enter an existing username.</p>
+          </Segment>
+        </Portal>
+      </div>
     );
   }
 };
