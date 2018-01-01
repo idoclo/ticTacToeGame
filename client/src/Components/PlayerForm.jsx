@@ -17,7 +17,7 @@ class PlayerForm extends Component {
     this.handleUsernameInput = this.handleUsernameInput.bind(this);
     this.submitUsername = this.submitUsername.bind(this);
     this.handleExistingPlayerPortalClose = this.handleExistingPlayerPortalClose.bind(this);
-    this.handleNoStatusPortalClose = this.handleNoStatusPortalClose.bind(this);
+    // this.handleNoStatusPortalClose = this.handleNoStatusPortalClose.bind(this);
     this.handleNewPlayerPortalClose = this.handleNewPlayerPortalClose.bind(this);
   }
 
@@ -33,11 +33,11 @@ class PlayerForm extends Component {
     this.setState({ existingPlayerPortalOpen: false });
   }
 
-  handleNoStatusPortalClose() {
-    console.log('handleNoStatusPortalClose invoked BEFORE', this.state.noStatusPortalOpen);
-    this.setState({ noStatusPortalOpen: false });
-    console.log('handleNoStatusPortalClose invoked AFTER', this.state.noStatusPortalOpen);
-  }
+  // handleNoStatusPortalClose() {
+  //   console.log('handleNoStatusPortalClose invoked BEFORE', this.state.noStatusPortalOpen);
+  //   this.setState({ noStatusPortalOpen: false });
+  //   console.log('handleNoStatusPortalClose invoked AFTER', this.state.noStatusPortalOpen);
+  // }
 
   handleNewPlayerPortalClose() {
     this.setState({ newPlayerPortalOpen: false });
@@ -47,7 +47,7 @@ class PlayerForm extends Component {
     const { name, status } = this.state;
     const { playerSymbol, handleModalClose, updatePlayer } = this.props;
     if (!status) {
-      this.setState({ noStatusPortalOpen: !this.state.noStatusPortalOpen });
+      this.setState({ noStatusPortalOpen: true });
       // window.alert('Need to select existing or new player mate!');
     }
 
@@ -183,7 +183,7 @@ class PlayerForm extends Component {
         </Portal>
         <Portal
           open={newPlayerPortalOpen}
-          onClose={this.handleNewPlayerPortalClose}
+          // onClose={this.handleNewPlayerPortalClose}
         >
           <Segment style={{ left: '35%', position: 'fixed', top: '40%', zIndex: 1000, textAlign:'center' }}>
             <Header>
