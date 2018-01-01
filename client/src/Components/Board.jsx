@@ -65,7 +65,7 @@ class Board extends Component {
       }
     })
     .catch(err => {
-      console.error('Not able to make move to server', err);
+      console.error('Not able to make move to server', err); // eslint-disable-line no-console
     });
   }
 
@@ -96,7 +96,7 @@ class Board extends Component {
       });
     })
     .catch(err => {
-      console.error('not able to fetch from /games', err);
+      console.error('not able to fetch from /games', err); // eslint-disable-line no-console
     });
   }
 
@@ -248,7 +248,7 @@ Board.propTypes = {
   playerO: PropTypes.string.isRequired,
   activePlayer: PropTypes.string.isRequired,
   toggleActivePlayer: PropTypes.func.isRequired,
-  toggleGameOn: PropTypes.bool.isRequired
+  toggleGameOn: PropTypes.func.isRequired
 };
 
 export default Board;

@@ -14,7 +14,7 @@ class Square extends Component {
   }
 
   handleClick(i) {
-    const { value, clickMethod, activePlayer, toggleActivePlayer } = this.props;
+    const { value, clickMethod, activePlayer, toggleActivePlayer } = this.props;  // eslint-disable-line react/prop-types
     if (value) {
       this.setState({ poorMovePortalOpen: true });
     } else {
