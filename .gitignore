@@ -14,3 +14,6 @@ client/dist/hot/hot-update.js
 client/dist/hot/hot-update.json
 client/dist/js/hot/hot-update.js
 client/dist/js/hot/hot-update.json
+
+# Note of tests to write in Jest/Mocha/Chai
+tests_to_write
