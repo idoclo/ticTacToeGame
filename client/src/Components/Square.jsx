@@ -14,10 +14,10 @@ class Square extends Component {
   }
 
   handleClick(i) {
-    const { value, clickMethod, activePlayer, toggleActivePlayer } = this.props;  // eslint-disable-line react/prop-types
+    const { value, clickMethod, activePlayer, toggleActivePlayer, gameId } = this.props;  // eslint-disable-line react/prop-types
     if (value) {
       this.setState({ poorMovePortalOpen: true });
-    } else {
+    } else if (gameId) {
       const piece = activePlayer === 'playerX' ? 'X' : 'O';
       clickMethod(i, piece);
       // update active player piece
@@ -72,6 +72,7 @@ Square.propTypes = {
   clickMethod: PropTypes.func.isRequired,
   activePlayer: PropTypes.string.isRequired,
   toggleActivePlayer: PropTypes.func.isRequired,
+  gameId: PropTypes.number.isRequired,
   winner: PropTypes.bool.isRequired
 };
 
