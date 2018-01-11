@@ -21,6 +21,12 @@
     "url": "https://github.com/pa87901/ticTacToeGame/issues"
   },
   "homepage": "https://github.com/pa87901/ticTacToeGame#readme",
+  "jest": {
+    "automock": false,
+    "setupFiles": [
+      "./client/src/setupJest.js"
+    ]
+  },
   "dependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
@@ -51,6 +57,7 @@
   "devDependencies": {
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
+    "isomorphic-fetch": "^2.2.1",
     "jest": "^22.0.4",
     "jest-serializer-enzyme": "^1.0.0",
     "nodemon": "^1.12.6",

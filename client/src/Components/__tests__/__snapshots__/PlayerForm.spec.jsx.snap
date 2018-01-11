@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PlayerForm PlayerForm renders correctly 1`] = `
+exports[`PlayerForm renders correctly 1`] = `
 ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
@@ -44,6 +44,7 @@ ShallowWrapper {
             <Button
               as="button"
               color="brown"
+              id="buttonExisting"
               onClick={[Function]}
               value="existing"
             >
@@ -53,6 +54,7 @@ ShallowWrapper {
             <Button
               as="button"
               color="grey"
+              id="buttonNew"
               onClick={[Function]}
               value="new"
             >
@@ -72,6 +74,7 @@ ShallowWrapper {
         <Button
           as="button"
           className="player-form-item"
+          id="buttonSubmitUsername"
           onClick={[Function]}
         >
           Enter
@@ -256,6 +259,7 @@ ShallowWrapper {
               <Button
                 as="button"
                 color="brown"
+                id="buttonExisting"
                 onClick={[Function]}
                 value="existing"
               >
@@ -265,6 +269,7 @@ ShallowWrapper {
               <Button
                 as="button"
                 color="grey"
+                id="buttonNew"
                 onClick={[Function]}
                 value="new"
               >
@@ -293,6 +298,7 @@ ShallowWrapper {
                 <Button
                   as="button"
                   color="brown"
+                  id="buttonExisting"
                   onClick={[Function]}
                   value="existing"
                 >
@@ -302,6 +308,7 @@ ShallowWrapper {
                 <Button
                   as="button"
                   color="grey"
+                  id="buttonNew"
                   onClick={[Function]}
                   value="new"
                 >
@@ -320,6 +327,7 @@ ShallowWrapper {
                   "as": "button",
                   "children": "Existing",
                   "color": "brown",
+                  "id": "buttonExisting",
                   "onClick": [Function],
                   "value": "existing",
                 },
@@ -344,6 +352,7 @@ ShallowWrapper {
                   "as": "button",
                   "children": "New",
                   "color": "grey",
+                  "id": "buttonNew",
                   "onClick": [Function],
                   "value": "new",
                 },
@@ -382,6 +391,7 @@ ShallowWrapper {
           "as": "button",
           "children": "Enter",
           "className": "player-form-item",
+          "id": "buttonSubmitUsername",
           "onClick": [Function],
         },
         "ref": null,
@@ -800,6 +810,7 @@ ShallowWrapper {
               <Button
                 as="button"
                 color="brown"
+                id="buttonExisting"
                 onClick={[Function]}
                 value="existing"
               >
@@ -809,6 +820,7 @@ ShallowWrapper {
               <Button
                 as="button"
                 color="grey"
+                id="buttonNew"
                 onClick={[Function]}
                 value="new"
               >
@@ -828,6 +840,7 @@ ShallowWrapper {
           <Button
             as="button"
             className="player-form-item"
+            id="buttonSubmitUsername"
             onClick={[Function]}
           >
             Enter
@@ -1012,6 +1025,7 @@ ShallowWrapper {
                 <Button
                   as="button"
                   color="brown"
+                  id="buttonExisting"
                   onClick={[Function]}
                   value="existing"
                 >
@@ -1021,6 +1035,7 @@ ShallowWrapper {
                 <Button
                   as="button"
                   color="grey"
+                  id="buttonNew"
                   onClick={[Function]}
                   value="new"
                 >
@@ -1049,6 +1064,7 @@ ShallowWrapper {
                   <Button
                     as="button"
                     color="brown"
+                    id="buttonExisting"
                     onClick={[Function]}
                     value="existing"
                   >
@@ -1058,6 +1074,7 @@ ShallowWrapper {
                   <Button
                     as="button"
                     color="grey"
+                    id="buttonNew"
                     onClick={[Function]}
                     value="new"
                   >
@@ -1076,6 +1093,7 @@ ShallowWrapper {
                     "as": "button",
                     "children": "Existing",
                     "color": "brown",
+                    "id": "buttonExisting",
                     "onClick": [Function],
                     "value": "existing",
                   },
@@ -1100,6 +1118,7 @@ ShallowWrapper {
                     "as": "button",
                     "children": "New",
                     "color": "grey",
+                    "id": "buttonNew",
                     "onClick": [Function],
                     "value": "new",
                   },
@@ -1138,6 +1157,7 @@ ShallowWrapper {
             "as": "button",
             "children": "Enter",
             "className": "player-form-item",
+            "id": "buttonSubmitUsername",
             "onClick": [Function],
           },
           "ref": null,

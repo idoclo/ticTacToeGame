@@ -129,6 +129,7 @@ class PlayerForm extends Component {
         <Form>
           <Button.Group className="player-form-item">
             <Button
+              id="buttonExisting"
               color="brown"
               value="existing"
               onClick={this.handleExistingOrNew}
@@ -137,6 +138,7 @@ class PlayerForm extends Component {
             </Button>
             <Button.Or />
             <Button
+              id="buttonNew"
               color="grey"
               value="new"
               onClick={this.handleExistingOrNew}
@@ -148,12 +150,14 @@ class PlayerForm extends Component {
             label="Username"
             placeholder="Enter username here ..."
             onChange={this.handleUsernameInput}
-            className="player-form-item" id="player-form-input"
+            className="player-form-item"
+            id="player-form-input"
           />
         </Form>
         <Button
           onClick={this.submitUsername}
           className="player-form-item"
+          id="buttonSubmitUsername"
         >
           Enter
         </Button>
