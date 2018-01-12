@@ -9,9 +9,9 @@ const connection = {
 
 const db = pgp(connection);
 
-const loadDb = db => (
-  schema(db)
-);
+const loadDb = db => schema(db);
+
+const resetDb = () => db.none('TRUNCATE games, players RESTART IDENTITY CASCADE');
 
 loadDb(db)
 .then(() => {
@@ -24,5 +24,6 @@ loadDb(db)
 
 module.exports = {
   db,
-  loadDb
+  loadDb,
+  resetDb
 };
