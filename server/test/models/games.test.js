@@ -19,7 +19,7 @@ const expectedtestGame = {
 const expectedTestGameBoardAfterMove = ['X', null, null, null, null, null, null, null, null];
 const boardPlayerXWinner = ['X', 'O', null, null, 'X', null, 'O', null, 'X'];
 
-describe('Games table', () => {
+xdescribe('Games table', () => {
   beforeAll(() => {
     return loadDb(db)
     .then(() => Player.addPlayer('Piccard'))
