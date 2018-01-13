@@ -93,7 +93,7 @@ class PlayerForm extends Component {
         playerSymbol
       };
       const myInit = {
-        method: status === 'existing' ? 'GET' : 'POST',
+        method: 'POST',
         headers: myHeaders,
         mode: 'cors',
         body: JSON.stringify(payload),
@@ -107,8 +107,9 @@ class PlayerForm extends Component {
         return res.json()
       })
       .then(resJSON => {
-        if (resJSON)
-        updatePlayer(resJSON.username);
+        const { username, avatar} = resJSON;
+        console.log('resJSON', username, avatar);
+        updatePlayer(username, avatar);
       })
       .then(() => {
         handleModalClose();

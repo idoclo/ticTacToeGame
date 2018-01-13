@@ -34,14 +34,14 @@ router.post('/new', (req, res) => {
   // first check that the username does not already exist
   Player.getByUsername(username)
   .then(response => {
-    const { player_id } = response;
-    res.status(405).send({ player_id, username });
+    const { player_id, avatar } = response;
+    res.status(405).send({ player_id, username, avatar });
   })
   .catch(err => {
     Player.addPlayer(username, avatarIndex)
     .then(response => {
-      const { player_id, username } = response;
-      res.status(200).send({ player_id, username });
+      const { player_id, username, avatar } = response;
+      res.status(200).send({ player_id, username, avatar });
     })
     .catch(err => {
       res.status(500).send();
