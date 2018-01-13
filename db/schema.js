@@ -2,7 +2,8 @@ const schema = db => (
   db.query('CREATE TABLE IF NOT EXISTS players(\
     player_id SERIAL PRIMARY KEY,\
     username VARCHAR(50) NOT NULL,\
-    score INTEGER NOT NULL, \
+    score INTEGER NOT NULL,\
+    avatar VARCHAR(10) NOT NULL,\
     created TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP\
     );')
   .then(() => {

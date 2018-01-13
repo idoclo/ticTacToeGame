@@ -3,19 +3,19 @@ const { db } = require('../../db');
 
 const getByUsername = username => {
   return db.one(
-    'SELECT player_id FROM players\
+    'SELECT player_id, avatar FROM players\
     WHERE username=$1',
     [username]
   );
 };
 
 
-const addPlayer = username => {
+const addPlayer = (username, avatarIndex) => {
   return db.one(
     'INSERT INTO players\
-    (username, score) VALUES ($1, $2)\
+    (username, score, avatar) VALUES ($1, $2, $3)\
     RETURNING *',
-    [username, 0]
+    [username, 0, avatarIndex]
   );
 };
 

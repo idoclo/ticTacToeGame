@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Header, Image, Table, Icon } from 'semantic-ui-react'
+import { Header, Image, Table, Icon } from 'semantic-ui-react';
+import avatars from './playerAvatars';
 
 
-const GameInfo = ({ playerX, playerO, activePlayer }) => {
+const GameInfo = ({ playerX, playerXAvatarIndex, playerO, playerOAvatarIndex, activePlayer }) => {
   const playerXTurn = activePlayer === 'playerX';
   const playerOTurn = activePlayer === 'playerO';
   return (
@@ -11,11 +12,7 @@ const GameInfo = ({ playerX, playerO, activePlayer }) => {
       <Header size="small">
         Current game
       </Header>
-      <Table
-        // basic='very'
-        celled
-        // collapsing
-      >
+      <Table celled>
         <Table.Header>
           <Table.Row className="game-info-row">
             <Table.HeaderCell>Player</Table.HeaderCell>
@@ -29,7 +26,7 @@ const GameInfo = ({ playerX, playerO, activePlayer }) => {
             <Table.Cell>
               <Header size='small' image>
                 <Image
-                  src='/assets/images/lindsay.png'
+                  src={avatars[playerXAvatarIndex]}
                   rounded
                   size='mini'
                 />
@@ -49,7 +46,7 @@ const GameInfo = ({ playerX, playerO, activePlayer }) => {
             <Table.Cell>
               <Header size='small' image>
                 <Image
-                  src='/assets/images/matthew.png'
+                  src={avatars[playerOAvatarIndex]}
                   rounded
                   size='mini'
                 />
@@ -74,7 +71,9 @@ const GameInfo = ({ playerX, playerO, activePlayer }) => {
 
 GameInfo.propTypes = {
   playerX: PropTypes.string.isRequired,
+  playerXAvatarIndex: PropTypes.number.isRequired, // eslint-disable-line
   playerO: PropTypes.string.isRequired,
+  playerOAvatarIndex: PropTypes.number.isRequired, // eslint-disable-line
   activePlayer: PropTypes.string.isRequired
 }
 

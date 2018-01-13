@@ -19,8 +19,8 @@ router.get('/:username', (req, res) => {
   const username = req.params.username;
   Player.getByUsername(username)
   .then(response => {
-    const { player_id } = response;
-    res.status(200).send({ player_id, username });
+    const { player_id, avatar } = response;
+    res.status(200).send({ player_id, username, avatar });
   })
   .catch(err => {
     console.error('Username does not exist', err);
@@ -30,7 +30,7 @@ router.get('/:username', (req, res) => {
 
 
 router.post('/new', (req, res) => {
-  const { username } = req.body;
+  const { username, avatarIndex } = req.body;
   // first check that the username does not already exist
   Player.getByUsername(username)
   .then(response => {
@@ -38,7 +38,7 @@ router.post('/new', (req, res) => {
     res.status(405).send({ player_id, username });
   })
   .catch(err => {
-    Player.addPlayer(username)
+    Player.addPlayer(username, avatarIndex)
     .then(response => {
       const { player_id, username } = response;
       res.status(200).send({ player_id, username });

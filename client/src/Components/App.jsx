@@ -11,7 +11,9 @@ class App extends Component {
     super();
     this.state = {
       playerX: '',
+      playerXAvatarIndex: null,
       playerO: '',
+      playerOAvatarIndex: null,
       activePlayer: 'playerX',
       modalOpenX: false,
       modalOpenO: false,
@@ -28,12 +30,18 @@ class App extends Component {
   }
 
 
-  updatePlayerX(pX) {
-    this.setState({ playerX: pX });
+  updatePlayerX(pXUsername, pXAvatarIndex) {
+    this.setState({
+      playerX: pXUsername,
+      playerXAvatarIndex: pXAvatarIndex
+    });
   }
 
-  updatePlayerO(pO) {
-    this.setState({ playerO: pO });
+  updatePlayerO(pOUsername, pOAvatarIndex) {
+    this.setState({
+      playerO: pOUsername,
+      playerOAvatarIndex: pOAvatarIndex
+    });
   }
 
   toggleActivePlayer(newActivePlayer) {
@@ -61,7 +69,16 @@ class App extends Component {
   }
 
   render() {
-    const { playerX, playerO, activePlayer, modalOpenX, modalOpenO, gameOn } = this.state;
+    const {
+      playerX,
+      playerXAvatarIndex,
+      playerO,
+      playerOAvatarIndex,
+      activePlayer,
+      modalOpenX,
+      modalOpenO,
+      gameOn
+    } = this.state;
     const board = (playerX.length && playerO.length) ?
       <Board
         playerX={playerX}
@@ -141,7 +158,9 @@ class App extends Component {
             <Grid.Column>
               <GameInfo
                 playerX={playerX}
+                playerXAvatarIndex={playerXAvatarIndex}
                 playerO={playerO}
+                playerOAvatarIndex={playerOAvatarIndex}
                 activePlayer={activePlayer}
               />
             </Grid.Column>

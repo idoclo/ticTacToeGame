@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Header, Icon, Form, Button, Portal, Segment } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
+import Avatar from './Avatar';
+import avatars from './playerAvatars';
 
 
 class PlayerForm extends Component {
@@ -11,7 +13,8 @@ class PlayerForm extends Component {
       status: null,
       noStatusPortalOpen: false,
       existingPlayerPortalOpen: false,
-      newPlayerPortalOpen: false
+      newPlayerPortalOpen: false,
+      selectedAvatarIndex: null
     };
     this.handleExistingOrNew = this.handleExistingOrNew.bind(this);
     this.handleUsernameInput = this.handleUsernameInput.bind(this);
@@ -19,6 +22,7 @@ class PlayerForm extends Component {
     this.handleExistingPlayerPortalClose = this.handleExistingPlayerPortalClose.bind(this);
     // this.handleNoStatusPortalClose = this.handleNoStatusPortalClose.bind(this);
     this.handleNewPlayerPortalClose = this.handleNewPlayerPortalClose.bind(this);
+    this.selectAvatar = this.selectAvatar.bind(this);
   }
 
   handleExistingOrNew(event, { value }) {
@@ -43,8 +47,12 @@ class PlayerForm extends Component {
     this.setState({ newPlayerPortalOpen: false });
   }
 
+  selectAvatar(index) {
+    this.setState({ selectedAvatarIndex: index });
+  }
+
   submitUsername() {
-    const { name, status } = this.state;
+    const { name, status, selectedAvatarIndex } = this.state;
     const { playerSymbol, handleModalClose, updatePlayer } = this.props;
     if (!status) {
       this.setState({ noStatusPortalOpen: true });
@@ -65,7 +73,8 @@ class PlayerForm extends Component {
         return res.json()
       })
       .then(resJSON => {
-        updatePlayer(resJSON.username);
+        const { username, avatar } = resJSON;
+        updatePlayer(username, avatar);
       })
       .then(() => {
         handleModalClose();
@@ -80,6 +89,7 @@ class PlayerForm extends Component {
       const payload = {
         username: name,
         playerStatus: status,
+        avatarIndex: selectedAvatarIndex,
         playerSymbol
       };
       const myInit = {
@@ -112,8 +122,25 @@ class PlayerForm extends Component {
 
   render() {
     const { playerSymbol } = this.props;
-    const { existingPlayerPortalOpen, noStatusPortalOpen, newPlayerPortalOpen } = this.state;
+    const {
+      existingPlayerPortalOpen,
+      noStatusPortalOpen,
+      newPlayerPortalOpen,
+      status,
+      selectedAvatarIndex
+    } = this.state;
     const iconName = playerSymbol === 'X' ? 'remove' : 'radio';
+    let avatarSelection = null;
+
+    if (status === 'new') {
+      avatarSelection =
+        <div className="avatarSelectionRow">
+          {avatars.map((avatar, index) =>
+            <Avatar key={avatar} index={index} src={avatar} selectAvatar={this.selectAvatar} selectedAvatarIndex={selectedAvatarIndex}/>
+          )}
+        </div>
+    }
+
     return (
       <div className="player-form">
         <Header
@@ -153,6 +180,7 @@ class PlayerForm extends Component {
             className="player-form-item"
             id="player-form-input"
           />
+          {avatarSelection}
         </Form>
         <Button
           onClick={this.submitUsername}

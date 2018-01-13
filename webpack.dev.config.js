@@ -55,6 +55,10 @@ const config = {
         // }
       },
       {
+        test: /\.png$/,
+        loader: 'url-loader?limit=100000&minetype=image/png'
+      },
+      {
         test: /\.css/,
         loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' })
       }

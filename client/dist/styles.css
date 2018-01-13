@@ -109,3 +109,20 @@ body {
   justify-content: space-around;
   background-color: yellow;
 }
+
+.avatarSelectionRow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 1% 0 6% 0;
+}
+
+.avatar {
+  margin: 3%;
+}
+
+.selectedAvatar {
+  margin: 3%;
+  border: 2px solid black;
+}
