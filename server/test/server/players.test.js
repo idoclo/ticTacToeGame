@@ -1,9 +1,6 @@
+'use strict'
 const request = require('supertest');
 const app = require('../../');
-console.log('APPPPPPP', app);
-
-
-const server = require('../../index.js');
 const Player = require('../../models/players.js');
 const { db, loadDb, resetDb } = require('../../../db');
 
@@ -13,18 +10,12 @@ const testPlayer3 = { username: 'Neil', avatarIndex: 2 };
 const testPlayer4 = { username: 'Mendoza', avatarIndex: 3 };
 const testPlayer5 = { username: 'Tao', avatarIndex: 6 };
 
-describe('Players endpoints', () => {
+describe('/players endpoints', () => {
   beforeAll(() => {
     return loadDb(db)
     .then(() => Player.addPlayer(testPlayer1.username, testPlayer1.avatarIndex))
     .then(() => Player.addPlayer(testPlayer2.username, testPlayer2.avatarIndex))
     .then(() => Player.addPlayer(testPlayer3.username, testPlayer3.avatarIndex))
-    // .then(() => Game.start(testPlayer1.username, testPlayer2.username))
-    // .then(() => Game.start(testPlayer2.username, testPlayer3.username))
-    // .then(() => Game.move(['X', 'O', null, null, 'X', null, 'O', null, 'X'], 1))
-    // .then(() => Game.declarePlayerXWinner(1))
-    // .then(() => Game.move(['O', 'X', null, null, 'O', null, 'X', null, 'O'], 2))
-    // .then(() => Game.declarePlayerOWinner(2))
     .catch(err => { console.error(err) });
   });
 
@@ -59,7 +50,7 @@ describe('Players endpoints', () => {
     });
   });
 
-  describe('POST /new', () => {
+  describe('POST /players/new', () => {
     it('should create a new player', () => {
       return request(app)
       .post('/players/new')
