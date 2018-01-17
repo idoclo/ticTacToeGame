@@ -41,10 +41,10 @@ router.post('/new', (req, res) => {
     Player.addPlayer(username, avatarIndex)
     .then(response => {
       const { player_id, username, avatar } = response;
-      res.status(200).send({ player_id, username, avatar });
+      res.status(201).send({ player_id, username, avatar });
     })
     .catch(err => {
-      res.status(500).send();
+      res.status(500).send('A username is required to create a user.');
     });
   });
 });

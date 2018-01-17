@@ -61,6 +61,7 @@
     "jest": "^22.0.4",
     "jest-serializer-enzyme": "^1.0.0",
     "nodemon": "^1.12.6",
+    "supertest": "^3.0.0",
     "webpack-dev-server": "^2.9.7"
   }
 }

@@ -2,19 +2,19 @@ const Player = require('../../models/players.js');
 const Game = require('../../models/games.js');
 const { db, loadDb, resetDb } = require('../../../db');
 
-const testPlayer1 = { username: 'Preda' };
-const testPlayer2 = { username: 'Esteban' };
-const testPlayer3 = { username: 'Neil' };
-const testPlayer4 = { username: 'Mandoza' };
+const testPlayer1 = { username: 'Preda', avatarIndex: 0 };
+const testPlayer2 = { username: 'Esteban', avatarIndex: 1 };
+const testPlayer3 = { username: 'Neil', avatarIndex: 2 };
+const testPlayer4 = { username: 'Mandoza', avatarIndex: 3 };
 let game1;
 let game2;
 
 describe('Players table', () => {
   beforeAll(() => {
     return loadDb(db)
-    .then(() => Player.addPlayer(testPlayer1.username))
-    .then(() => Player.addPlayer(testPlayer2.username))
-    .then(() => Player.addPlayer(testPlayer3.username))
+    .then(() => Player.addPlayer(testPlayer1.username, testPlayer1.avatarIndex))
+    .then(() => Player.addPlayer(testPlayer2.username, testPlayer2.avatarIndex))
+    .then(() => Player.addPlayer(testPlayer3.username, testPlayer3.avatarIndex))
     .then(() => Game.start(testPlayer1.username, testPlayer2.username))
     .then(() => Game.start(testPlayer2.username, testPlayer3.username))
     .then(() => Game.move(['X', 'O', null, null, 'X', null, 'O', null, 'X'], 1))
@@ -27,7 +27,7 @@ describe('Players table', () => {
   afterAll(() => resetDb());
 
   it('should add a new player to the players table', () => {
-    Player.addPlayer(testPlayer4.username)
+    Player.addPlayer(testPlayer4.username, testPlayer4.avatarIndex)
     .then(player => {
       expect(player.username).toEqual('Mandoza');
     });
