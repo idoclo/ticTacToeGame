@@ -285,6 +285,7 @@ ShallowWrapper {
               onChange={[Function]}
               placeholder="Enter username here ..."
             />,
+            null,
           ],
         },
         "ref": null,
@@ -380,6 +381,7 @@ ShallowWrapper {
             "rendered": null,
             "type": [Function],
           },
+          null,
         ],
         "type": [Function],
       },
@@ -1051,6 +1053,7 @@ ShallowWrapper {
                 onChange={[Function]}
                 placeholder="Enter username here ..."
               />,
+              null,
             ],
           },
           "ref": null,
@@ -1146,6 +1149,7 @@ ShallowWrapper {
               "rendered": null,
               "type": [Function],
             },
+            null,
           ],
           "type": [Function],
         },

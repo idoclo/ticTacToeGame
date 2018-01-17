@@ -52,7 +52,6 @@ const declarePlayerXWinner = gameId => {
   return db.one('SELECT playerx from games WHERE game_id = $1', gameId)
   .then(winningPlayerId => {
     const { playerx } = winningPlayerId;
-    // console.log('playerx winner id', playerx);
     return db.one(
       'UPDATE games SET winner = $1 WHERE game_id = $2 RETURNING *',
       [playerx, gameId]
@@ -65,7 +64,6 @@ const declarePlayerOWinner = gameId => {
   return db.one('SELECT playero from games WHERE game_id = $1', gameId)
   .then(winningPlayerId => {
     const { playero } = winningPlayerId;
-    // console.log('playero winner id', playero, 'gameId', gameId);
     return db.one(
       'UPDATE games SET winner = $1 WHERE game_id = $2 RETURNING *',
       [playero, gameId]

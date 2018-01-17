@@ -19,21 +19,17 @@ const expectedtestGame = {
 const expectedTestGameBoardAfterMove = ['X', null, null, null, null, null, null, null, null];
 const boardPlayerXWinner = ['X', 'O', null, null, 'X', null, 'O', null, 'X'];
 
-xdescribe('Games table', () => {
+describe('Games table', () => {
   beforeAll(() => {
     return loadDb(db)
-    .then(() => Player.addPlayer('Piccard'))
+    .then(() => Player.addPlayer('Piccard', 3))
     .then(player => {
       player1 = player;
-      return Player.addPlayer('Riker');
+      return Player.addPlayer('Riker', 6);
     })
     .then(player => {
       player2 = player;
-      // return Game.start(player1, player2);
     })
-    // .then(game => {
-    //   testGame = game;
-    // })
     .catch(err => console.error(err));
   });
 

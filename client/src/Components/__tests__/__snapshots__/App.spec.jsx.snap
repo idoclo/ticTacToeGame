@@ -128,7 +128,9 @@ ShallowWrapper {
               <GameInfo
                 activePlayer="playerX"
                 playerO=""
+                playerOAvatarIndex={null}
                 playerX=""
+                playerXAvatarIndex={null}
               />
             </GridColumn>
             <GridColumn>
@@ -408,7 +410,9 @@ ShallowWrapper {
               <GameInfo
                 activePlayer="playerX"
                 playerO=""
+                playerOAvatarIndex={null}
                 playerX=""
+                playerXAvatarIndex={null}
               />
             </GridColumn>
             <GridColumn>
@@ -430,7 +434,9 @@ ShallowWrapper {
                 <GameInfo
                   activePlayer="playerX"
                   playerO=""
+                  playerOAvatarIndex={null}
                   playerX=""
+                  playerXAvatarIndex={null}
                 />
               </GridColumn>,
               <GridColumn>
@@ -452,7 +458,9 @@ ShallowWrapper {
                 "children": <GameInfo
                   activePlayer="playerX"
                   playerO=""
+                  playerOAvatarIndex={null}
                   playerX=""
+                  playerXAvatarIndex={null}
                 />,
               },
               "ref": null,
@@ -463,7 +471,9 @@ ShallowWrapper {
                 "props": Object {
                   "activePlayer": "playerX",
                   "playerO": "",
+                  "playerOAvatarIndex": null,
                   "playerX": "",
+                  "playerXAvatarIndex": null,
                 },
                 "ref": null,
                 "rendered": null,
@@ -620,7 +630,9 @@ ShallowWrapper {
                 <GameInfo
                   activePlayer="playerX"
                   playerO=""
+                  playerOAvatarIndex={null}
                   playerX=""
+                  playerXAvatarIndex={null}
                 />
               </GridColumn>
               <GridColumn>
@@ -900,7 +912,9 @@ ShallowWrapper {
                 <GameInfo
                   activePlayer="playerX"
                   playerO=""
+                  playerOAvatarIndex={null}
                   playerX=""
+                  playerXAvatarIndex={null}
                 />
               </GridColumn>
               <GridColumn>
@@ -922,7 +936,9 @@ ShallowWrapper {
                   <GameInfo
                     activePlayer="playerX"
                     playerO=""
+                    playerOAvatarIndex={null}
                     playerX=""
+                    playerXAvatarIndex={null}
                   />
                 </GridColumn>,
                 <GridColumn>
@@ -944,7 +960,9 @@ ShallowWrapper {
                   "children": <GameInfo
                     activePlayer="playerX"
                     playerO=""
+                    playerOAvatarIndex={null}
                     playerX=""
+                    playerXAvatarIndex={null}
                   />,
                 },
                 "ref": null,
@@ -955,7 +973,9 @@ ShallowWrapper {
                   "props": Object {
                     "activePlayer": "playerX",
                     "playerO": "",
+                    "playerOAvatarIndex": null,
                     "playerX": "",
+                    "playerXAvatarIndex": null,
                   },
                   "ref": null,
                   "rendered": null,

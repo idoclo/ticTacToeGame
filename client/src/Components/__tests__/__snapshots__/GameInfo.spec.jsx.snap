@@ -77,7 +77,7 @@ ShallowWrapper {
                     as="img"
                     rounded={true}
                     size="mini"
-                    src="/assets/images/lindsay.png"
+                    src={undefined}
                     ui={true}
                   />
                   <HeaderContent>
@@ -120,7 +120,7 @@ ShallowWrapper {
                     as="img"
                     rounded={true}
                     size="mini"
-                    src="/assets/images/matthew.png"
+                    src={undefined}
                     ui={true}
                   />
                   <HeaderContent>
@@ -213,7 +213,7 @@ ShallowWrapper {
                       as="img"
                       rounded={true}
                       size="mini"
-                      src="/assets/images/lindsay.png"
+                      src={undefined}
                       ui={true}
                     />
                     <HeaderContent>
@@ -256,7 +256,7 @@ ShallowWrapper {
                       as="img"
                       rounded={true}
                       size="mini"
-                      src="/assets/images/matthew.png"
+                      src={undefined}
                       ui={true}
                     />
                     <HeaderContent>
@@ -414,7 +414,7 @@ ShallowWrapper {
                         as="img"
                         rounded={true}
                         size="mini"
-                        src="/assets/images/lindsay.png"
+                        src={undefined}
                         ui={true}
                       />
                       <HeaderContent>
@@ -457,7 +457,7 @@ ShallowWrapper {
                         as="img"
                         rounded={true}
                         size="mini"
-                        src="/assets/images/matthew.png"
+                        src={undefined}
                         ui={true}
                       />
                       <HeaderContent>
@@ -500,7 +500,7 @@ ShallowWrapper {
                           as="img"
                           rounded={true}
                           size="mini"
-                          src="/assets/images/lindsay.png"
+                          src={undefined}
                           ui={true}
                         />
                         <HeaderContent>
@@ -545,7 +545,7 @@ ShallowWrapper {
                           as="img"
                           rounded={true}
                           size="mini"
-                          src="/assets/images/lindsay.png"
+                          src={undefined}
                           ui={true}
                         />
                         <HeaderContent>
@@ -564,7 +564,7 @@ ShallowWrapper {
                             as="img"
                             rounded={true}
                             size="mini"
-                            src="/assets/images/lindsay.png"
+                            src={undefined}
                             ui={true}
                           />,
                           <HeaderContent>
@@ -584,7 +584,7 @@ ShallowWrapper {
                             "as": "img",
                             "rounded": true,
                             "size": "mini",
-                            "src": "/assets/images/lindsay.png",
+                            "src": undefined,
                             "ui": true,
                           },
                           "ref": null,
@@ -685,7 +685,7 @@ ShallowWrapper {
                           as="img"
                           rounded={true}
                           size="mini"
-                          src="/assets/images/matthew.png"
+                          src={undefined}
                           ui={true}
                         />
                         <HeaderContent>
@@ -723,7 +723,7 @@ ShallowWrapper {
                           as="img"
                           rounded={true}
                           size="mini"
-                          src="/assets/images/matthew.png"
+                          src={undefined}
                           ui={true}
                         />
                         <HeaderContent>
@@ -742,7 +742,7 @@ ShallowWrapper {
                             as="img"
                             rounded={true}
                             size="mini"
-                            src="/assets/images/matthew.png"
+                            src={undefined}
                             ui={true}
                           />,
                           <HeaderContent>
@@ -762,7 +762,7 @@ ShallowWrapper {
                             "as": "img",
                             "rounded": true,
                             "size": "mini",
-                            "src": "/assets/images/matthew.png",
+                            "src": undefined,
                             "ui": true,
                           },
                           "ref": null,
@@ -897,7 +897,7 @@ ShallowWrapper {
                       as="img"
                       rounded={true}
                       size="mini"
-                      src="/assets/images/lindsay.png"
+                      src={undefined}
                       ui={true}
                     />
                     <HeaderContent>
@@ -940,7 +940,7 @@ ShallowWrapper {
                       as="img"
                       rounded={true}
                       size="mini"
-                      src="/assets/images/matthew.png"
+                      src={undefined}
                       ui={true}
                     />
                     <HeaderContent>
@@ -1033,7 +1033,7 @@ ShallowWrapper {
                         as="img"
                         rounded={true}
                         size="mini"
-                        src="/assets/images/lindsay.png"
+                        src={undefined}
                         ui={true}
                       />
                       <HeaderContent>
@@ -1076,7 +1076,7 @@ ShallowWrapper {
                         as="img"
                         rounded={true}
                         size="mini"
-                        src="/assets/images/matthew.png"
+                        src={undefined}
                         ui={true}
                       />
                       <HeaderContent>
@@ -1234,7 +1234,7 @@ ShallowWrapper {
                           as="img"
                           rounded={true}
                           size="mini"
-                          src="/assets/images/lindsay.png"
+                          src={undefined}
                           ui={true}
                         />
                         <HeaderContent>
@@ -1277,7 +1277,7 @@ ShallowWrapper {
                           as="img"
                           rounded={true}
                           size="mini"
-                          src="/assets/images/matthew.png"
+                          src={undefined}
                           ui={true}
                         />
                         <HeaderContent>
@@ -1320,7 +1320,7 @@ ShallowWrapper {
                             as="img"
                             rounded={true}
                             size="mini"
-                            src="/assets/images/lindsay.png"
+                            src={undefined}
                             ui={true}
                           />
                           <HeaderContent>
@@ -1365,7 +1365,7 @@ ShallowWrapper {
                             as="img"
                             rounded={true}
                             size="mini"
-                            src="/assets/images/lindsay.png"
+                            src={undefined}
                             ui={true}
                           />
                           <HeaderContent>
@@ -1384,7 +1384,7 @@ ShallowWrapper {
                               as="img"
                               rounded={true}
                               size="mini"
-                              src="/assets/images/lindsay.png"
+                              src={undefined}
                               ui={true}
                             />,
                             <HeaderContent>
@@ -1404,7 +1404,7 @@ ShallowWrapper {
                               "as": "img",
                               "rounded": true,
                               "size": "mini",
-                              "src": "/assets/images/lindsay.png",
+                              "src": undefined,
                               "ui": true,
                             },
                             "ref": null,
@@ -1505,7 +1505,7 @@ ShallowWrapper {
                             as="img"
                             rounded={true}
                             size="mini"
-                            src="/assets/images/matthew.png"
+                            src={undefined}
                             ui={true}
                           />
                           <HeaderContent>
@@ -1543,7 +1543,7 @@ ShallowWrapper {
                             as="img"
                             rounded={true}
                             size="mini"
-                            src="/assets/images/matthew.png"
+                            src={undefined}
                             ui={true}
                           />
                           <HeaderContent>
@@ -1562,7 +1562,7 @@ ShallowWrapper {
                               as="img"
                               rounded={true}
                               size="mini"
-                              src="/assets/images/matthew.png"
+                              src={undefined}
                               ui={true}
                             />,
                             <HeaderContent>
@@ -1582,7 +1582,7 @@ ShallowWrapper {
                               "as": "img",
                               "rounded": true,
                               "size": "mini",
-                              "src": "/assets/images/matthew.png",
+                              "src": undefined,
                               "ui": true,
                             },
                             "ref": null,
