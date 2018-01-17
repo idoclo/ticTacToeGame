@@ -7,7 +7,9 @@ const connection = {
   database: 'tictactoe'
 };
 
-const db = pgp(connection);
+const url = process.env.DATABASE_URL || connection;
+
+const db = pgp(url);
 
 const loadDb = db => schema(db);
 
