@@ -68,5 +68,10 @@ Then navigate to `http://localhost:5000/` in the web browser.
 
 
 
+## Preview
+<p align="center">
+  <img src="previews/tictactoePreview.png" style="width: 20%; height: 20%" >
+</p>
+
 ## Author
 Preda A
