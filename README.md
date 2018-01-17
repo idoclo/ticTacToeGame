@@ -73,5 +73,14 @@ Then navigate to `http://localhost:5000/` in the web browser.
   <img src="previews/tictactoePreview.png" style="width: 20%; height: 20%" >
 </p>
 
+
+## Running tests
+There are client side tests and server side tests.
+These can be run using the `test` script, or `test:update` if you need to update snapshots.
+```
+npm run test
+```
+
+
 ## Author
 Preda A
