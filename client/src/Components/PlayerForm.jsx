@@ -135,10 +135,15 @@ class PlayerForm extends Component {
 
     if (status === 'new') {
       avatarSelection =
-        <div className="avatarSelectionRow">
-          {avatars.map((avatar, index) =>
-            <Avatar key={avatar} index={index} src={avatar} selectAvatar={this.selectAvatar} selectedAvatarIndex={selectedAvatarIndex}/>
-          )}
+        <div>
+          <Header size="tiny">
+            Please choose an avatar
+          </Header>
+          <div className="avatarSelectionRow">
+            {avatars.map((avatar, index) =>
+              <Avatar key={avatar} index={index} src={avatar} selectAvatar={this.selectAvatar} selectedAvatarIndex={selectedAvatarIndex}/>
+            )}
+          </div>
         </div>
     }
 
