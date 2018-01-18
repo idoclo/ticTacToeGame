@@ -102,11 +102,6 @@ body {
 }
 
 .square:hover {
-  width: 35%;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  justify-content: space-around;
   background-color: #d9dce0;
   border-radius: 5%;
 }

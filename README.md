@@ -61,6 +61,7 @@ Then navigate to `http://localhost:5000/` in the web browser.
 * Node
 * Express
 * PostgreSQL
+* PG-Promise
 
 ### Additional tools
 * Webpack (production and development)
