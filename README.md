@@ -4,6 +4,8 @@
 
 ## Introduction
 This is a full stack application that records players, enables matches between two players at a time and keeps the scores of all entered players.
+The top three scoring players are displayed and updated after each game by a worker.
+A 'current game' table informs the current players and which player's turn it is.
 
 
 
